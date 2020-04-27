@@ -1,4 +1,4 @@
 #!/bin/sh
 
-[[ -d ".env" ]] && source .env/bin/activate || virtualenv .env
+[[ -d ".env" ]] && source .env/bin/activate || virtualenv .env ; source .env/bin/activate
 
