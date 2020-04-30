@@ -40,7 +40,7 @@ else # windows
     if [[ -d ".env" ]]
     then # env exists
         echo "activating virtualenv\n"
-        source .env/bin/activate
+        source .env/scripts/activate
     else # create env
         echo "creating virtualenv\n"
         py -m virtualenv .env
