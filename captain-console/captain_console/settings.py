@@ -75,8 +75,12 @@ WSGI_APPLICATION = 'captain_console.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME' : 'soajzcik ',
+        'USER' : 'soajzcik ',
+        'PASSWORD' : '8sGGHxXceC_sGDnHLYdmS8CK6PuS4cKf',
+        'HOST' : 'kandula.db.elephantsql.com',
+        'PORT' : '5432'
     }
 }
 
