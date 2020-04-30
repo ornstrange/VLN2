@@ -1,20 +1,28 @@
 Home
-|
-+---Offers
-|
-+---Games
-|
-+---Consoles
+
+Products
+$
++==Offers <> Product
+$
++==Games <> Product
+$
++==Consoles <> Product
+$
++==All Products <> Product
 
 Cart
 |
-+---Checkout
++---Checkout >> Home
 
 Login
 |
-+---Signup
++---Signup >> Login
 
 About
-|
-+---Contact
+$
++==About Us
+$
++==Employees
+
+Terms & Conditions
 
