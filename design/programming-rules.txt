@@ -1,0 +1,20 @@
+--- SYNTAX ---
+
+Tabsize 4, convert tabs to spaces.
+Space around all operators, ex. (1 + 1) * (x ~ 5)
+Variable names use underscore notation, ex. variable_a, not variableA
+Classes start with capital letter. ex. Class_a
+Use only # single line comments.
+Add to each function definition a comment at the top explaining what it does.
+
+--- CODING ---
+
+* USE PYTHON TO IT'S FULLEST, there are alot of great built in methods.
+Use "for item in list" instead of "for i in range(len(list))" and so on.
+
+No line should be longer than 80 characters. Something is wrong if it is.
+Keep variable names as short as you can but still explanative.
+Explain with comments what you're achieving, not what's happening.
+Dont comment unnecessarily.
+If your variables are correctly named, comments are unnecessary
+
