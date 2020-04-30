@@ -45,7 +45,7 @@ else # windows
         echo "creating virtualenv\n"
         py -m virtualenv .env
         echo "activating virtualenv\n"
-        source .env/bin/activate
+        source .env/scripts/activate
         echo "installing requirements\n"
         py -m pip install -r requirements.txt
     fi
