@@ -1,0 +1,23 @@
+Employee
+    username :  string *
+    passhash :  string
+
+User
+    username :  string *
+    passhash :  string
+
+Order
+    id :        string/int *
+    products :  string/int[]
+    status :    string
+    user :      string
+    date :      string
+
+Product
+    id :        string/int *
+    keywords :  string[]
+    name :      string
+    desc :      string
+    type :      string
+    price :     int
+
