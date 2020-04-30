@@ -8,21 +8,17 @@ then # macos/linux
         echo "python 3.8+ required!\n"
         return 1
     fi
-    if [[ ! $(python -c "import virtualenv" >/dev/null 2>&1) ]]
-    then # virtualenv not installed
-        echo "installing virtualenv\n"
-        sudo pip install virtualenv
-    fi
+    python -c "import virtualenv" >/dev/null 2>&1 || sudo pip install virtualenv
     if [[ -d ".env" ]]
     then # env exists
-        echo "activating virtualenv\n"
+        echo "activating virtualenv"
         source .env/bin/activate
     else # create env
         echo "creating virtualenv\n"
         virtualenv .env
         echo "activating virtualenv\n"
         source .env/bin/activate
-        echo "installing requirements\n"
+        echo "installing requirements"
         pip install -r requirements.txt
     fi
 else # windows
@@ -32,21 +28,17 @@ else # windows
         echo "python 3.8+ required!\n"
         return 1
     fi
-    if [[ ! $(py -c "import virtualenv" >/dev/null 2>&1) ]]
-    then # virtualenv not installed
-        echo "installing virtualenv\n"
-        py -m pip install virtualenv
-    fi
+    py -c "import virtualenv" >/dev/null 2>&1 || py -m pip install virtualenv
     if [[ -d ".env" ]]
     then # env exists
-        echo "activating virtualenv\n"
+        echo "activating virtualenv"
         source .env/scripts/activate
     else # create env
         echo "creating virtualenv\n"
         py -m virtualenv .env
         echo "activating virtualenv\n"
         source .env/scripts/activate
-        echo "installing requirements\n"
+        echo "installing requirements"
         py -m pip install -r requirements.txt
     fi
 fi
