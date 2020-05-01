@@ -5,6 +5,8 @@ Employee
 User
     username :  string *
     passhash :  string
+    image :     string
+    name :      string
 
 Order
     id :        string/int *
@@ -16,6 +18,7 @@ Order
 Product
     id :        string/int *
     keywords :  string[]
+    image :     string
     name :      string
     desc :      string
     type :      string
