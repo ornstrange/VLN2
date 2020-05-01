@@ -1,0 +1,7 @@
+footer {
+    grid-area: footer;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 2em #00000010;
+}
+
