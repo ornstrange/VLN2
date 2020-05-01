@@ -4,3 +4,12 @@ from django.http import HttpResponse
 def index(request):
     return render(request, 'products/index.html')
 
+def index(request):
+    return render(request, 'products/index.html')
+
+def index(request):
+    return render(request, 'products/index.html')
+
+def index(request):
+    return render(request, 'products/index.html')
+
