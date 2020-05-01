@@ -3,11 +3,10 @@ from django.shortcuts import render, redirect
 
 # Create your views here.
 def register(request):
-    if request.mehthod == 'POST':
+    if request.method == 'POST':
         form = UserCreationForm(data=request.POST)
         if form.is_valid():
             form.save()
             return redirect('login')
-    return render(request, 'user/register.html',{ #eða whatever you want Örn
-        'form' : UserCreationForm()
-    )}
+            
+    return render(request, 'testUser/register.html',{'form' : UserCreationForm()})
