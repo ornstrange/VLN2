@@ -6,6 +6,15 @@
     box-sizing: border-box;
 }
 
+a {
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    color: #999999;
+}
+
 html {
 	font-family: 'Open Sans', sans-serif;
     font-size: 16px;
@@ -23,7 +32,7 @@ body {
     background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
     display: grid;
     grid-template:
-        "navbar" 2em
+        "navbar" 3em
         "content" auto
         "footer" 8em
         / 1fr

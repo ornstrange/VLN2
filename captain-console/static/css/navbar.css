@@ -3,5 +3,18 @@ nav {
     height: 100%;
     background: rgba(255, 255, 255, 0.5);
     box-shadow: 0 0 2em #00000010;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
+nav .link-group {
+    display: flex;
+    justify-content: space-around;
+}
+
+nav .link-group a {
+    display: block;
+    width: 5em;
+    text-align: center;
+}
