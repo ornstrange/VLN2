@@ -3,13 +3,13 @@ from django.db import models
 # Create your models here.
 class Product(models.Model):
 
-    id = models.IntegerField("Id", primary_key = True)
-    keywords = models.CharField("Keywords", max_length=50)
-    image = models.ImageField("Image", upload_to=None, height_field=None, width_field=None, max_length=None)
-    name = models.CharField("Name", max_length=50)
-    desc = models.TextField("Description")
-    type = models.CharField("Type", max_length=50)
-    price = models.IntegerField("Price") 
+    id = models.IntegerField(primary_key = True)
+    keywords = models.CharField(max_length=50)
+    image = models.CharField(max_length=255)
+    name = models.CharField(max_length=50)
+    desc = models.TextField()
+    type = models.CharField(max_length=50)
+    price = models.IntegerField() 
 
     class Meta:
         verbose_name = ("Product")
