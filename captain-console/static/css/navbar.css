@@ -1,7 +1,24 @@
 nav {
     grid-area: navbar;
     height: 100%;
+    width: 100%;
     background: rgba(255, 255, 255, 0.5);
     box-shadow: 0 0 2em #00000010;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
+nav .link-group {
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+nav .link-group a {
+    height: 100%;
+    display: block;
+    line-height: 3em;
+    width: 6em;
+    text-align: center;
+}

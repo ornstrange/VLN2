@@ -3,7 +3,7 @@
 if [[ $OSTYPE =~ "(darwin|linux-gnu)" ]]
 then # macos/linux
     which python | grep ".env" >/dev/null 2>&1 && return 0
-    if [[ $(python --version | cut -d ' ' -f 2 | cut -d '.' -f 1-2) != "3.8" ]]
+    if [[ $(python3 --version | cut -d ' ' -f 2 | cut -d '.' -f 1-2) != "3.8" ]]
     then
         echo "python 3.8+ required!\n"
         return 1

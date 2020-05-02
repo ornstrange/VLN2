@@ -1,3 +1,9 @@
 <nav>
-    i am a header
+    {% for link_group in navbar_links %}
+        <div class="link-group">
+        {% for name, link in link_group.items %}
+            <a href="{% url link %}">{{ name }}</a>
+        {% endfor %}
+        </div>
+    {% endfor %}
 </nav>

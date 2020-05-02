@@ -6,6 +6,19 @@
     box-sizing: border-box;
 }
 
+a, button {
+    border: none;
+    background: none;
+    text-decoration: none;
+    color: black;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+a:hover, button:hover {
+    color: #999999;
+}
+
 html {
 	font-family: 'Open Sans', sans-serif;
     font-size: 16px;
@@ -17,15 +30,35 @@ h1, h3, h5 {
 	letter-spacing: .1em;
 }
 
+h1 {
+    font-size: 4em;
+}
+
+h3 {
+    font-size: 2em;
+}
+
+h5 {
+    font-size: 1em;
+}
+
 body {
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
     background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
     display: grid;
     grid-template:
-        "navbar" 2em
-        "content" auto
+        "navbar" 3em
+        "main" auto
         "footer" 8em
-        / 1fr
+        / 1fr;
+    align-items: center;
+    justify-items: center;
 }
 
+.container {
+    display: block;
+    grid-area: main;
+    max-width: 72em;
+    width: 100%;
+}
