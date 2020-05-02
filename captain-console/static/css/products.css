@@ -1,0 +1,15 @@
+main {
+    width: 100%;
+    background: white;
+    display: grid;
+    grid-template:
+        "sidebar products" auto \ 12em 1fr;
+}
+
+aside {
+    grid-area: sidebar;
+}
+
+section {
+    grid-area: products;
+}

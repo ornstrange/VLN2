@@ -49,8 +49,16 @@ body {
     display: grid;
     grid-template:
         "navbar" 3em
-        "content" auto
+        "main" auto
         "footer" 8em
-        / 1fr
+        / 1fr;
+    align-items: center;
+    justify-items: center;
 }
 
+.container {
+    display: block;
+    grid-area: main;
+    max-width: 72em;
+    width: 100%;
+}

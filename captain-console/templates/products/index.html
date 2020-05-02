@@ -1,4 +1,9 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
-    <h1>{{ data }}</h1>
+    <link rel="stylesheet" href="{% static 'css/products.css' %}">
+    <main>
+        <aside>sidebar</aside>
+        <section>products</section>
+    </main>
 {% endblock %}
