@@ -6,12 +6,16 @@
     box-sizing: border-box;
 }
 
-a {
+a, button {
+    border: none;
+    background: none;
     text-decoration: none;
     color: black;
+    font-weight: 700;
+    text-transform: uppercase;
 }
 
-a:hover {
+a:hover, button:hover {
     color: #999999;
 }
 
@@ -26,9 +30,21 @@ h1, h3, h5 {
 	letter-spacing: .1em;
 }
 
+h1 {
+    font-size: 4em;
+}
+
+h3 {
+    font-size: 2em;
+}
+
+h5 {
+    font-size: 1em;
+}
+
 body {
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
     background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
     display: grid;
     grid-template:

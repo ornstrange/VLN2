@@ -1,13 +1,9 @@
 <nav>
-    <div class="link-group">
-        <a href="#">Home</a>
-        <a href="#">Offers</a>
-        <a href="#">Games</a>
-        <a href="#">Consoles</a>
-    </div>
-    <div class="link-group">
-        <a href="#">About</a>
-        <a href="#">Cart</a>
-        <a href="#">Login</a>
-    </div>
+    {% for link_group in navbar_links %}
+        <div class="link-group">
+        {% for name, link in link_group.items %}
+            <a href="{% url link %}">{{ name }}</a>
+        {% endfor %}
+        </div>
+    {% endfor %}
 </nav>
