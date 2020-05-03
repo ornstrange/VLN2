@@ -55,6 +55,7 @@ TEMPLATES = [{
 WSGI_APPLICATION = 'captain_console.wsgi.application'
 
 # Database
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -65,6 +66,7 @@ DATABASES = {
         'PORT': '5432'
     }
 }
+"""
 
 
 # Password validation
