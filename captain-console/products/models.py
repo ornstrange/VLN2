@@ -1,11 +1,11 @@
 from django.db import models
 
 class Product(models.Model):
-    name = models.CharField(max_length=50)
-    image_count = models.IntegerField()
+    name = models.CharField(max_length=255)
+    image = models.CharField(max_length=255)
     price = models.IntegerField()
-    description = models.CharField(blank=True)
-    keywords = models.CharField(max_length=50)
-    category = models.CharField(max_length=50)
-    condition = models.CharField(max_length=50)
+    description = models.TextField()
+    keywords = models.CharField(max_length=255)
+    category = models.CharField(max_length=255)
+    condition = models.CharField(max_length=255)
 
