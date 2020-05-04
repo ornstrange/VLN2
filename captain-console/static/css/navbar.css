@@ -2,11 +2,12 @@ nav {
     grid-area: navbar;
     height: 100%;
     width: 100%;
-    background: rgba(255, 255, 255, 0.5);
-    box-shadow: 0 0 2em #00000010;
+    /* background: rgba(255, 255, 255, 0.5); */
+    /* box-shadow: 0 0 2em #00000010; */
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-bottom: 1px solid #999999;
 }
 
 nav .link-group {

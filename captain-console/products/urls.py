@@ -5,5 +5,6 @@ urlpatterns = [
     path("offers/", views.offers, name="offers"),
     path("consoles/", views.consoles, name="consoles"),
     path("games/", views.games, name="games"),
+    path("product/<int:id>", views.product, name="product")
 ]
 

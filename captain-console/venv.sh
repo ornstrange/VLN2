@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [[ $OSTYPE =~ "(darwin19|linux-gnu)" ]]
+if [[ $OSTYPE =~ "darwin" || $OSTYPE =~ "linux" ]]
 then # macos/linux
     which python | grep ".env" >/dev/null 2>&1 && return 0
     if [[ $(python3 --version | cut -d ' ' -f 2 | cut -d '.' -f 1-2) != "3.8" ]]

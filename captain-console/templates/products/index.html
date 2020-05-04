@@ -11,12 +11,12 @@
             </aside>
             <section>
                 {% for prod in products %}
-                <a href="#" class="product">
+                <a href="{{ prod.id }}" class="product">
                     <div class="img-container">
                         <img src="{% static 'img/products/'|add:prod.thumbimg %}" alt="{{ prod.name }}">
                     </div>
-                    <h5>{{ prod.name }}</h5>
-                    <p>{{ prod.price }} kr.</p>
+                    <h5 class="title">{{ prod.name }}</h5>
+                    <p class="price">{{ prod.price }} kr.</p>
                 </a>
                 {% endfor %}
             </section>

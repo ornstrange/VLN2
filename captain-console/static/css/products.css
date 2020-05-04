@@ -27,7 +27,7 @@ section {
 }
 
 section .product {
-    background: white;
+    /* background: white; */
     /* height: 24em; */
     display: flex;
     flex-direction: column;
@@ -38,15 +38,27 @@ section .product {
     margin-bottom: 1em;
     flex-grow: none;
     text-transform: none;
+    border: 1px solid #999999;
+}
+
+section .product:hover .img-container img {
+    transform: scale(1.1);
+    opacity: 0.8;
 }
 
 section .product .img-container {
     height: 12em;
     width: 100%;
+    display: flex;
+    justify-content: center;
     overflow: hidden;
 }
 
-section .product img {
-    width: 100%;
+section .product .img-container img {
+    height: 100%;
     mix-blend-mode: darken;
+}
+
+section .product .title {
+    margin: 1em 0 .25em 0;
 }

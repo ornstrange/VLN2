@@ -22,3 +22,13 @@ def games(request):
     }
     return render(request, 'products/index.html', context)
 
+def product(request, id_):
+    if id_:
+        prod = models.Product.objects.get(pk=id_)
+        context = {
+            'title': prod.name,
+            'prod': prod
+        }
+        return render(request, 'products/product.html', context)
+    return None
+
