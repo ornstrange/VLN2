@@ -4,6 +4,8 @@
 /* Global */
 * { /* fix box-sizing */
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 a, button {
@@ -26,7 +28,7 @@ html {
 }
 
 h1, h3, h5 {
-	font-family: 'Bebas Neue', sans-serif;
+    font-family: 'Bebas Neue', sans-serif;
 	letter-spacing: .1em;
 }
 
@@ -39,7 +41,8 @@ h3 {
 }
 
 h5 {
-    font-size: 1em;
+    font-weight: normal;
+    font-size: 1.6em;
 }
 
 body {
@@ -54,11 +57,12 @@ body {
         / 1fr;
     align-items: center;
     justify-items: center;
+    overflow-x: hidden;
 }
 
 .container {
     display: block;
     grid-area: main;
-    max-width: 72em;
+    max-width: 114em;
     width: 100%;
 }

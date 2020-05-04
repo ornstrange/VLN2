@@ -1,4 +1,5 @@
 from django.db import models
+from collections.abc import Collection
 
 class Product(models.Model):
     name = models.CharField(max_length=255)
@@ -8,4 +9,8 @@ class Product(models.Model):
     keywords = models.CharField(max_length=255)
     category = models.CharField(max_length=255)
     condition = models.CharField(max_length=255)
+
+    @property
+    def thumbimg(self):
+        return self.image.split(";")[0] + ".jpg"
 

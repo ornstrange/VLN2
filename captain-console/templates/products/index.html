@@ -3,7 +3,32 @@
 {% block content %}
     <link rel="stylesheet" href="{% static 'css/products.css' %}">
     <main>
-        <aside>sidebar</aside>
-        <section>products</section>
+        <div class="products">
+            <aside>
+                <form class="search">
+                    <input id="search" type="text" name="search" value="Search...">
+                </form>
+            </aside>
+            <section>
+                {% for prod in products %}
+                <a href="#" class="product">
+                    <div class="img-container">
+                        <img src="{% static 'img/products/'|add:prod.thumbimg %}" alt="{{ prod.name }}">
+                    </div>
+                    <h5>{{ prod.name }}</h5>
+                    <p>{{ prod.price }} kr.</p>
+                </a>
+                {% endfor %}
+            </section>
+        </div>
     </main>
+    <script>
+        let search = document.getElementById('search');
+        search.addEventListener('focus', (ev) => {
+            search.value = "";
+        });
+        search.addEventListener('blur', (ev) => {
+            search.value = "Search...";
+        });
+    </script>
 {% endblock %}
