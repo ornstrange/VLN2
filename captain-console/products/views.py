@@ -22,9 +22,9 @@ def games(request):
     }
     return render(request, 'products/index.html', context)
 
-def product(request, id_):
-    if id_:
-        prod = models.Product.objects.get(pk=id_)
+def product(request, id):
+    if id:
+        prod = models.Product.objects.get(pk=id)
         context = {
             'title': prod.name,
             'prod': prod

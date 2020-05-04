@@ -1,5 +1,4 @@
 from django.db import models
-from collections.abc import Collection
 
 class Product(models.Model):
     name = models.CharField(max_length=255)

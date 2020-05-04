@@ -11,7 +11,7 @@
             </aside>
             <section>
                 {% for prod in products %}
-                <a href="{{ prod.id }}" class="product">
+                <a href="{% url 'product' prod.id %}" class="product">
                     <div class="img-container">
                         <img src="{% static 'img/products/'|add:prod.thumbimg %}" alt="{{ prod.name }}">
                     </div>
