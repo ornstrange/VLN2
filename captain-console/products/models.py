@@ -13,3 +13,7 @@ class Product(models.Model):
     def thumbimg(self):
         return self.image.split(";")[0] + ".jpg"
 
+    @property
+    def imglist(self):
+        return list(map(lambda x: x + ".jpg", self.image.split(";")))
+
