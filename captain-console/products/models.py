@@ -9,3 +9,5 @@ class Product(models.Model):
     category = models.CharField(max_length=255)
     condition = models.CharField(max_length=255)
 
+    def __str__(self):
+        return self.description

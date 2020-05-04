@@ -22,7 +22,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'captain_console',
     'user.apps.UserConfig',
-    'products'
+    'products.apps.ProductsConfig'
 ]
 
 MIDDLEWARE = [
