@@ -4,6 +4,7 @@ nav {
     width: 100%;
     /* background: white; */
     /* border-bottom: 1px solid #999999; */
+    border-bottom: 1px solid #999999;
 }
 
 .nav-container {
@@ -31,5 +32,20 @@ nav {
 }
 
 .nav-container .link-group a:hover {
-    color: #999999;
+    background: #f2f2f2;
 }
+
+.nav-container .link-group .active {
+    height: calc(100% + 1px);
+    border: 1px solid #999999;
+    border-top: none;
+    border-bottom: 1px solid white;
+    z-index: 99999;
+}
+
+.nav-container .link-group .active:hover {
+    cursor: default;
+    background: white;
+    color: black;
+}
+

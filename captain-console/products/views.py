@@ -1,4 +1,6 @@
+from django.core.paginator import Paginator
 from django.shortcuts import render
+
 from . import models
 
 def consoles(request):
@@ -12,8 +14,11 @@ def games(request):
     return products(request, prods)
 
 def products(request, prods):
+    paginated_prods = Paginator(prods, 21)
+    page_num = request.GET.get('page')
+    paged_prods = paginated_prods.get_page(page_num)
     context = {
-        'products': prods[:20]
+        'products': paged_prods
     }
     return render(request, 'products/index.html', context)
 

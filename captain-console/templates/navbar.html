@@ -1,9 +1,10 @@
+{% load navbar_tags %}
 <nav>
     <div class="nav-container">
     {% for link_group in navbar_links %}
         <div class="link-group">
         {% for name in link_group %}
-            <a href="{% url name %}">{{ name.capitalize }}</a>
+        <a class="{% active name title %}" href="{% url name %}">{{ name|capfirst }}</a>
         {% endfor %}
         </div>
     {% endfor %}

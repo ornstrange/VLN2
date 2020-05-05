@@ -10,6 +10,9 @@ class Product(models.Model):
     category = models.CharField(max_length=255)
     condition = models.CharField(max_length=255)
 
+    class Meta:
+        ordering = ['name']
+
     @property
     def thumbimg(self):
         return self.imglist[0]
