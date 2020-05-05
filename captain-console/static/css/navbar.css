@@ -2,8 +2,8 @@ nav {
     grid-area: navbar;
     height: 100%;
     width: 100%;
-    background: white;
-    border-bottom: 1px solid #999999;
+    /* background: white; */
+    /* border-bottom: 1px solid #999999; */
 }
 
 .nav-container {
