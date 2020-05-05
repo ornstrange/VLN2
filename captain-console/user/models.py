@@ -6,4 +6,5 @@ class User(models.Model):
     passhash = models.CharField(max_length=50)
     image = models.CharField(max_length=50, null=True)
     name = models.CharField(max_length=50, null=True)
-    isAdmin = models.BooleanField()
+    admin = models.BooleanField()
+
