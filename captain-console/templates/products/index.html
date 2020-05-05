@@ -4,22 +4,26 @@
     <link rel="stylesheet" href="{% static 'css/products.css' %}">
     <main>
         <div class="products">
-            <aside>
-                <form class="search">
-                    <input id="search" type="text" name="search" value="Search...">
-                </form>
-            </aside>
-            <section>
+            {% comment %} <aside> {% endcomment %}
+                <div class="filters">
+                    <form class="search">
+                        <input id="search" type="text" name="search" value="Search...">
+                    </form>
+                </div>
+            {% comment %} </aside> {% endcomment %}
+            {% comment %} <section> {% endcomment %}
                 {% for prod in products %}
                 <a href="{% url 'product' prod.id %}" class="product">
                     <div class="img-container">
                         <img src="{% static 'img/products/'|add:prod.thumbimg %}" alt="{{ prod.name }}">
                     </div>
-                    <h5 class="title">{{ prod.name }}</h5>
-                    <p class="price">{{ prod.price }} kr.</p>
+                    <div class="info">
+                        <p class="title">{{ prod.name }}</p>
+                        <p class="price">{{ prod.price }} kr.</p>
+                    </div>
                 </a>
                 {% endfor %}
-            </section>
+            {% comment %} </section> {% endcomment %}
         </div>
     </main>
     <script>

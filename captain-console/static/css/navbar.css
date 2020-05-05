@@ -2,25 +2,34 @@ nav {
     grid-area: navbar;
     height: 100%;
     width: 100%;
-    /* background: rgba(255, 255, 255, 0.5); */
     background: white;
-    /* box-shadow: 0 0 2em #00000010; */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     border-bottom: 1px solid #999999;
 }
 
-nav .link-group {
+.nav-container {
+    margin: 0 auto;
+    width: 100vw;
+    max-width: 114em;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-container .link-group {
     height: 100%;
     display: flex;
     justify-content: space-around;
 }
 
-nav .link-group a {
+.nav-container .link-group a {
     height: 100%;
     display: block;
     line-height: 3em;
     width: 6em;
     text-align: center;
+}
+
+.nav-container .link-group a:hover {
+    color: #999999;
 }

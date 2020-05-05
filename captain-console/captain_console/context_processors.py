@@ -1,11 +1,11 @@
 def navigation_links(request):
+    user = "login"
     return {'navbar_links': [{
-        "Home": "index",
-        "Offers": "offers",
+        "Home": "home",
         "Games": "games",
         "Consoles": "consoles"
     },{
         "About": "about",
         "Cart": "cart",
-        "Login": "login"
+        "Login": user
     }]}

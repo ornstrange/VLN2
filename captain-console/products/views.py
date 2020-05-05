@@ -1,34 +1,26 @@
 from django.shortcuts import render
 from . import models
 
-def offers(request):
+def products(request, title, objects):
     context = {
-        'title': 'Offers',
-        'products': models.Product.objects.all()
+        'title': title,
+        'products': objects
     }
     return render(request, 'products/index.html', context)
 
 def consoles(request):
-    context = {
-        'title': 'Consoles',
-        'products': models.Product.objects.all()
-    }
-    return render(request, 'products/index.html', context)
+    objects = models.Product.objects.filter(category="Console")
+    return products(request, 'Console', objects)
 
 def games(request):
-    context = {
-        'title': 'Games',
-        'products': models.Product.objects.all()
-    }
-    return render(request, 'products/index.html', context)
+    objects = models.Product.objects.filter(category="Game")
+    return products(request, 'Games', objects)
 
 def product(request, id):
-    if id:
-        prod = models.Product.objects.get(pk=id)
-        context = {
-            'title': prod.name,
-            'prod': prod
-        }
-        return render(request, 'products/product.html', context)
-    return None
+    prod = models.Product.objects.get(pk=id)
+    context = {
+        'title': prod.name,
+        'prod': prod
+    }
+    return render(request, 'products/product.html', context)
 

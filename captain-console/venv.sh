@@ -8,7 +8,7 @@ then # macos/linux
         echo "python 3.8+ required!\n"
         return 1
     fi
-    python -c "import virtualenv" >/dev/null 2>&1 || sudo pip install virtualenv
+    python3 -c "import virtualenv" >/dev/null 2>&1 || sudo python3 -m pip install virtualenv
     if [[ -d ".env" ]]
     then # env exists
         echo "activating virtualenv"

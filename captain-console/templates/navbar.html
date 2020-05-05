@@ -1,4 +1,5 @@
 <nav>
+    <div class="nav-container">
     {% for link_group in navbar_links %}
         <div class="link-group">
         {% for name, link in link_group.items %}
@@ -6,4 +7,5 @@
         {% endfor %}
         </div>
     {% endfor %}
+    </div>
 </nav>
