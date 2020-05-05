@@ -10,10 +10,9 @@
                         <input id="search" type="text" name="search" value="Search...">
                     </form>
                 </div>
-            {% comment %} </aside> {% endcomment %}
-            {% comment %} <section> {% endcomment %}
                 {% for prod in products %}
-                <a href="{% url 'product' prod.id %}" class="product">
+                {% comment %} <a href="{% url 'product' prod.id %}" class="product"> {% endcomment %}
+                <a href="{{ prod.get_absolute_url }}" class="product">
                     <div class="img-container">
                         <img src="{% static 'img/products/'|add:prod.thumbimg %}" alt="{{ prod.name }}">
                     </div>
@@ -23,7 +22,6 @@
                     </div>
                 </a>
                 {% endfor %}
-            {% comment %} </section> {% endcomment %}
         </div>
     </main>
     <script>

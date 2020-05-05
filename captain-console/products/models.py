@@ -1,3 +1,4 @@
+from django.urls import reverse
 from django.db import models
 
 class Product(models.Model):
@@ -11,9 +12,15 @@ class Product(models.Model):
 
     @property
     def thumbimg(self):
-        return self.image.split(";")[0] + ".jpg"
+        return self.imglist[0]
 
     @property
     def imglist(self):
-        return list(map(lambda x: x + ".jpg", self.image.split(";")))
+        return list(map(lambda x: f"{x}.jpg", self.image.split(';')))
+
+    def __str__(self):
+        return f"{self.id}: {self.name} / {self.category}"
+
+    def get_absolute_url(self):
+        return reverse('product', args=[str(self.id)])
 

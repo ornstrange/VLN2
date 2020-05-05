@@ -2,8 +2,8 @@
     <div class="nav-container">
     {% for link_group in navbar_links %}
         <div class="link-group">
-        {% for name, link in link_group.items %}
-            <a href="{% url link %}">{{ name }}</a>
+        {% for name in link_group %}
+            <a href="{% url name %}">{{ name.capitalize }}</a>
         {% endfor %}
         </div>
     {% endfor %}

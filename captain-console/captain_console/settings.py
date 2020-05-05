@@ -49,6 +49,7 @@ TEMPLATES = [{
             'django.contrib.auth.context_processors.auth',
             'django.contrib.messages.context_processors.messages',
             'captain_console.context_processors.navigation_links',
+            'captain_console.context_processors.names',
         ],
     },
 }]
