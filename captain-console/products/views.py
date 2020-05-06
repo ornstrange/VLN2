@@ -20,7 +20,7 @@ def products(request, prods):
         search_query = SearchQuery(search_term, search_type='phrase')
         prods = prods.annotate(
             search=SearchVector('name', 'description', 'keywords', 'condition'))\
-            .filter(search=search_query))
+            .filter(search=search_query)
     if sort_key := request.GET.get('sort'):
         prods = prods.order_by(sort_key)
     paginated_prods = Paginator(prods, 22)
