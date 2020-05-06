@@ -7,7 +7,6 @@ class User(models.Model):
     image = models.CharField(max_length=50, null=True)
     name = models.CharField(max_length=50, null=True)
     searches = models.TextField()
-    admin = models.BooleanField()
 
 class Employee(models.Model):
     username = models.CharField(max_length=20)
