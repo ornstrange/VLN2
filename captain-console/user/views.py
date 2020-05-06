@@ -6,8 +6,8 @@ from user.models import User
 def register(request):
     if request.method == 'POST':
         data = request.POST.copy()
-        username = data.get("uname")
-        password = make_password(data.get("pword"))
+        username = data.get("uname") #TODO: check if username exists - inform user
+        password = make_password(data.get("pword")) #TODO: add some password validators - inform user
         cpassword = data.get("cpword")
         if check_password(cpassword, password):
             data = User(username=username, passhash=password, admin=0)
