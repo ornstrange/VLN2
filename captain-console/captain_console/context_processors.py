@@ -4,7 +4,7 @@ def navigation_links(request):
     user = "login"
     return {'navbar_links': [
         ["home", "games", "consoles"],
-        ["about", "cart", user]
+        ["about", "cart", user, "register"]
     ]}
 
 def names(request):
