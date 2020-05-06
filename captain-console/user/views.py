@@ -6,10 +6,11 @@ from user.models import User
 # Create your views here.
 def register(request):
     if request.method == 'POST':
-        form = request.POST.copy()
-        username = form.get("uname")
-        password = make_password(form.get("pword"))
-        cpassword = form.get("cpword")
+        form = RegisterForm(request.POST)
+        data = request.POST.copy()
+        username = data.get("uname")
+        password = make_password(data.get("pword"))
+        cpassword = data.get("cpword")
         if check_password(cpassword, password):
             data = User(username=username, passhash=password, admin=0)
             data.save()
