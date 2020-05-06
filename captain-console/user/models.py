@@ -9,3 +9,7 @@ class User(models.Model):
     searches = models.TextField()
     admin = models.BooleanField()
 
+class Employee(models.Model):
+    username = models.CharField(max_length=20)
+    passhash = models.CharField(max_length=255)
+

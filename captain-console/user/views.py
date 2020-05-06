@@ -6,14 +6,16 @@ from user.models import User
 def register(request):
     if request.method == 'POST':
         data = request.POST.copy()
-        username = data.get("uname") #TODO: check if username exists - inform user
-        password = make_password(data.get("pword")) #TODO: add some password validators - inform user
+        # TODO: check if username exists - inform user
+        username = data.get("uname")
+        # TODO: add some password validators - inform user
+        password = make_password(data.get("pword"))
         cpassword = data.get("cpword")
         if check_password(cpassword, password):
             data = User(username=username, passhash=password, admin=0)
             data.save()
             return redirect('login')
         else:
-            print("does not match") #TODO: inform the user
+            print("does not match") # TODO: inform the user
     return render(request, 'user/register.html')
 
