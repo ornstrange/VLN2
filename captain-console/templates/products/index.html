@@ -1,13 +1,25 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load url_manipulation %}
 {% block content %}
     <link rel="stylesheet" href="{% static 'css/products.css' %}">
     <main>
         <div class="products">
             <div class="filters">
-                <form class="search">
-                    <input id="search" type="text" name="search" value="Search...">
+                <form method="post">
+                    {% csrf_token %}
+                    <input id="search" type="text" name="search">
+                    <button>Search</button>
                 </form>
+                <a href="{{ name }}{% query_transform sort='price' %}">
+                    Sort cheapest first
+                </a>
+                <a href="{{ name }}{% query_transform sort='-price' %}">
+                    Sort cheapest last
+                </a>
+                <a href="{{ name }}{% query_transform sort='name' %}">
+                    Sort alphabetical
+                </a>
             </div>
             {% for prod in products %}
             <a href="{{ prod.get_absolute_url }}" class="product">
@@ -18,12 +30,16 @@
                     <p class="title">{{ prod.name }}</p>
                     <p class="price">{{ prod.price }} kr.</p>
                 </div>
+                <div class="hover-info">
+                    <p class="desc">{{ prod.short_desc }}</p>
+                </div>
             </a>
             {% endfor %}
         </div>
         <div class="pagination">
             {% if products.has_previous %}
-            <a class="pagination-segment" href="?page={{ products.previous_page_number }}">
+            <a class="pagination-segment"
+                href="{{ name }}{% query_transform page=products.previous_page_number %}">
                 previous
             </a>
             {% else %}
@@ -35,7 +51,8 @@
                 {{ products.number }} / {{ products.paginator.num_pages }}
             </span>
             {% if products.has_next %}
-            <a class="pagination-segment" href="?page={{ products.next_page_number }}">
+            <a class="pagination-segment"
+                href="{{ name }}{% query_transform page=products.next_page_number %}">
                 next
             </a>
             {% else %}
@@ -45,13 +62,4 @@
             {% endif %}
         </div>
     </main>
-    <script>
-        let search = document.getElementById('search');
-        search.addEventListener('focus', (ev) => {
-            search.value = "";
-        });
-        search.addEventListener('blur', (ev) => {
-            search.value = "Search...";
-        });
-    </script>
 {% endblock %}

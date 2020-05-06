@@ -12,5 +12,5 @@ def names(request):
     if name == "product":
         prod_id = request.resolver_match.kwargs['id']
         name = Product.objects.filter(id=prod_id)[0].name
-    return {'title': name.capitalize()}
+    return {'name': name, 'title': name.capitalize()}
 

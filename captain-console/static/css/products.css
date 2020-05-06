@@ -15,7 +15,7 @@ main {
 
 .filters {
     box-sizing: content-box;
-    grid-area: span 3;
+    grid-area: span 2;
     width: 100%;
     height: 100%;
 }
@@ -30,7 +30,18 @@ main {
 
 .product:hover {
     background: #efefef;
+    /* z-index: 9999; */
 }
+
+.product:hover .hover-info {
+    display: block;
+}
+
+.product:hover .img-container {
+    height: 0;
+    opacity: 0;
+    z-index: -1;
+} 
 
 .product .img-container {
     padding-top: 1em;
@@ -61,6 +72,12 @@ main {
     padding: .5em;
 }
 
+.product .hover-info {
+    padding: 1em;
+    display: none;
+}
+
+/* pagination */
 .pagination {
     text-align: center;
     display: flex;

@@ -14,6 +14,12 @@ class Product(models.Model):
         ordering = ['name']
 
     @property
+    def short_desc(self):
+        if len(self.description) > 260:
+            return " ".join(self.description.split()[:49]) + "..."
+        return self.description
+
+    @property
     def thumbimg(self):
         return self.imglist[0]
 

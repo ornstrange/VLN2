@@ -2,17 +2,12 @@
 {% load static %}
 {% block content %}
     <div>
-        <h1>
-            {{ prod.name }}
-        </h1>
+        <h1>{{ prod.name }}</h1>
         {% for img in prod.imglist %}
             <img style="width: 14em;" src="{% static 'img/products/'|add:img %}" alt="">
         {% endfor %}
-        <h3>
-            {{ prod.price }} kr.
-        </h3>
-        <p>
-            {{ prod.description }}
-        </p>
+        <h3>{{ prod.price }} kr.</h3>
+        <p>{{ prod.description }}</p>
+        <p>{{ prod.keywords }}</p>
     </div>
 {% endblock %}
