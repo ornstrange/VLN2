@@ -9,3 +9,6 @@ def employees(request):
 def contact(request):
     return render(request, 'about/contact.html')
 
+def terms(request):
+    return render(request, 'about/terms.html')
+

@@ -113,3 +113,10 @@ dmypy.json
 
 # YouCompleteMe config
 .ycm*
+
+# Stupid macos .DS_Store
+.DS_Store
+
+# .idea, no thanks
+.idea/
+
