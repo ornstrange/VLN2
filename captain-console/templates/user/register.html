@@ -3,12 +3,7 @@
     <h1>Register</h1>
     <form action="#" method="POST">
         {% csrf_token %}
-        <lable for="uname">Username:</lable>
-        <input id="uname" type="text" name="uname" maxlength="100" required></input>
-        <lable for="pword">Password:</lable>
-        <input id="pword" type="text" name="pword" maxlength="100" required></input>
-        <lable for="cpword">Confirm password</lable>
-        <input id="cpword" type="text" name="cpword" maxlength="100" required></input>
-        <input type="submit" value="Submit">
+        {{form}}
+        <input type="submit" value="sign up"/>
     </form>
 {% endblock %}

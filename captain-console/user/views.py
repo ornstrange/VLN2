@@ -1,21 +1,30 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.hashers import make_password, check_password
 from user.models import User
+from django.contrib.auth.forms import AuthenticationForm
+
 
 # Create your views here.
 def register(request):
     if request.method == 'POST':
         data = request.POST.copy()
-        # TODO: check if username exists - inform user
-        username = data.get("uname")
-        # TODO: add some password validators - inform user
-        password = make_password(data.get("pword"))
+        username = data.get("uname") #TODO: check if username exists - inform user
+        password = make_password(data.get("pword")) #TODO: add some password validators - inform user
         cpassword = data.get("cpword")
         if check_password(cpassword, password):
             data = User(username=username, passhash=password, admin=0)
             data.save()
             return redirect('login')
         else:
-            print("does not match") # TODO: inform the user
-    return render(request, 'user/register.html')
+            print("does not match") #TODO: inform the user
+    return render(request, 'user/register.html') 
+
+
+def login_view(request):
+    if request.method == "POST":
+        form = AuthenticationForm()
+    
+    else:
+        form = AuthenticationForm()
+    return render(request, "user/login.html",{"form":form})
 
