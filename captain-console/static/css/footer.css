@@ -1,9 +1,10 @@
 footer {
-    border: 2px black;
+
     grid-area: footer;
     width: 100%;
     height: 100%;
     padding: 1em;
+
     /* background: rgba(255, 255, 255, 0.5); */
     /* box-shadow: 0 0 2em #00000010; */
     /* border-top: 1px solid #999999; */
@@ -22,7 +23,7 @@ footer {
     margin-bottom: 15px;
 }
 
-.infolist {
+.info_list {
     width: 500px;
     margin-left: auto;
     margin-right: auto;
@@ -33,19 +34,25 @@ footer {
     justify-content: space-evenly;
 }
 
-.bottominfo p{
-    margin: 5px;
+.bottominfo p,h5{
+    margin-top: 5px;
+    font-size: small;
+}
+.bottominfo h5{
+    margin-top: 18px;
+    font-size: small;
 }
 
 
 .bottomline{
     color:grey;
-    font-size: 12px;
+    font-size: 10px;
     text-align: center;
-    left: 0;
-    position: relative;
-    bottom: 0;
-    width: 100%;
+    margin-top: 5px;
+
+
+
+
 }
 
 
