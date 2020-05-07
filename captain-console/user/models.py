@@ -7,4 +7,3 @@ class UserProfile(models.Model):
     avatar = models.ImageField()
     searches = models.TextField(null="true")
 
-
