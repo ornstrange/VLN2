@@ -2,8 +2,6 @@ nav {
     grid-area: navbar;
     height: 100%;
     width: 100%;
-    /* background: white; */
-    /* border-bottom: 1px solid #999999; */
     border-bottom: 1px solid #999999;
 }
 
@@ -21,6 +19,25 @@ nav {
     height: 100%;
     display: flex;
     justify-content: space-around;
+}
+
+.nav-container .link-group form {
+    padding: .75em 1em;
+    display: flex;
+}
+
+.nav-container .link-group .search-bar {
+    border: 1px solid #999999;
+    padding: 0 .25em;
+}
+
+.nav-container .link-group form button {
+    margin-left: 1em;
+}
+
+.nav-container .link-group form button img {
+    height: 1em;
+    width: 1em;
 }
 
 .nav-container .link-group a {

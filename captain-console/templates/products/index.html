@@ -8,35 +8,28 @@
             {% if not products %}
             <h3>No products found...<br>sorry!</h3>
             {% endif %}
-            <div class="filters">
-                <form action="{{ name }}" method="get">
-                    <div>
-                        <input type="text" name="search">
-                        <button class="btn" type="submit">Search</button>
-                    </div>
-                    {% if products %}
-                    <button name="sort" value="price" class="sort btn" type="submit">Cheap first</button>
-                    <button name="sort" value="-price" class="sort btn" type="submit">Cheap last</button>
-                    <button name="sort" value="name" class="sort btn" type="submit">Alphabetical</button>
-                    {% endif  %}
-                </form>
-                {% comment %} {% if products %} {% endcomment %}
-                {% comment %} <a class="sort btn" href="{{ name }}{% query_transform sort='price' %}"> {% endcomment %}
-                {% comment %}     Sort cheapest first {% endcomment %}
-                {% comment %} </a> {% endcomment %}
-                {% comment %} <a class="sort btn" href="{{ name }}{% query_transform sort='-price' %}"> {% endcomment %}
-                {% comment %}     Sort cheapest last {% endcomment %}
-                {% comment %} </a> {% endcomment %}
-                {% comment %} <a class="sort btn" href="{{ name }}{% query_transform sort='name' %}"> {% endcomment %}
-                {% comment %}     Sort alphabetical {% endcomment %}
-                {% comment %} </a> {% endcomment %}
-                {% comment %} {% endif %} {% endcomment %}
-            </div>
             {% if products %}
+            <div class="filters">
+                <a class="filter btn" href="{{ name }}{% query_transform sort='price' %}">Price: Lowest to highest</a>
+                <a class="filter btn" href="{{ name }}{% query_transform sort='-price' %}">Price: Highest to lowest</a>
+                <a class="filter btn" href="{{ name }}{% query_transform sort='name' %}">Alphabetical</a>
+                <select class="filter-sel btn" id="filter-keywords">
+                    <option value="" hidden="true">Filter by keyword</option>
+                    <option class="sel-opt" value="doo"></option>
+                </select>
+                <select class="filter-sel btn" id="per-page">
+                    <option value="" hidden="true">Items per page</option>
+                    <option class="sel-opt" value="8">8</option>
+                    <option class="sel-opt" value="16">16</option>
+                    <option class="sel-opt" value="32">32</option>
+                    <option class="sel-opt" value="64">64</option>
+                </select>
+            </div>
             {% for prod in products %}
             <a href="{{ prod.get_absolute_url }}" class="product">
                 <div class="img-container">
-                    <img src="{% static 'img/products/'|add:prod.thumbimg %}" alt="{{ prod.name }}">
+                    <img src="{% static 'img/products/'|add:prod.thumbimg %}"
+                    alt="{{ prod.name }}">
                 </div>
                 <div class="info">
                     <p class="title">{{ prod.name }}</p>
@@ -77,4 +70,5 @@
         </div>
         {% endif %}
     </main>
+    <script src="{% static 'js/products.js' %}"></script>
 {% endblock %}

@@ -6,7 +6,7 @@ main {
     width: 100vw;
     max-width: 114em;
     margin: 0 auto;
-    padding: 1em 2em 0 2em;
+    padding: 2em 2em 0 2em;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(24em, 1fr));
     justify-items: center;
@@ -20,14 +20,14 @@ main {
 }
 
 .filters {
-    padding: 1em 1em 0 0;
-    /* box-sizing: content-box; */
-    grid-area: span 2;
-    width: 100%;
-    height: 100%;
+    padding: 1em;
+    /* grid-area: span 3; */
+    background: #f2f2f2;
+    border: 1px solid #999999;
+    width: calc(100% + 2px);
+    height: calc(100% + 2px);
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
     justify-content: center;
 }
 
@@ -48,17 +48,21 @@ main {
     margin-right: 1em;
 }
 
-.filters .sort {
-    margin-top: 1em;
-}
-
-.filters .btn {
-    padding: .25em 1em;
+.filters .filter-sel {
+    width: 100%;
     border: 1px solid #999999;
+    margin-top: 1em;
+    padding: 0;
+    text-align: center;
+    text-align-last: center;
 }
 
-.filters .btn:hover {
-    background: #f2f2f2;
+.filters .filter-sel option {
+    padding-left: calc(50% - 2em);
+}
+
+.filters .filter {
+    margin-top: 1em;
 }
 
 .product {
