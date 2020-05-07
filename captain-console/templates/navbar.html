@@ -1,12 +1,16 @@
 {% load navbar_tags %}
 <nav>
     <div class="nav-container">
-    {% for link_group in navbar_links %}
-        <div class="link-group">
-        {% for name in link_group %}
-        <a class="{% active name title %}" href="{% url name %}">{{ name|capfirst }}</a>
+    {% if user.is_authenticated %}
+        <a href="user/logout/">Logout</a>
+    {% else %}
+        {% for link_group in navbar_links %}
+            <div class="link-group">
+            {% for name in link_group %}
+                <a class="{% active name title %}" href="{% url name %}">{{ name|capfirst }}</a>
+            {% endfor %}
+            </div>
         {% endfor %}
-        </div>
-    {% endfor %}
+    {% endif %}
     </div>
 </nav>
