@@ -17,12 +17,14 @@ def register(request):
     })
 
 def login_view(request):
-    if request.method == "POST":
+    if request.method == "GET":
         form = AuthenticationForm(data=request.POST)
         if form.is_valid():
             user = form.get_user()
             login(request, user)
             return redirect("index")
 
-    return render(request, "user/login.html",{"form": AuthenticationForm})
+    return render(request, "user/index.html", {
+        "form": AuthenticationForm()
+    })
 
