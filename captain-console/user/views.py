@@ -3,7 +3,7 @@ from django.contrib.auth.hashers import make_password, check_password
 from user.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.forms import AuthenticationForm
-
+from django.contrib.auth import login, authenticate
 
 # Create your views here.
 def register(request):
@@ -18,9 +18,11 @@ def register(request):
 
 def login_view(request):
     if request.method == "POST":
-        form = AuthenticationForm()
-    
-    else:
-        form = AuthenticationForm()
-    return render(request, "user/login.html",{"form":form})
+        form = AuthenticationForm(data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            return redirect("index")
+
+    return render(request, "user/login.html",{"form": AuthenticationForm})
 
