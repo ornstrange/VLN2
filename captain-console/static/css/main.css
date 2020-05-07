@@ -62,3 +62,21 @@ body {
     color: #bbbbbb;
 }
 
+.info-container {
+    width: 600px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.info_text ,p {
+    font-size: large;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.infolist {
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
