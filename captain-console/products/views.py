@@ -15,11 +15,10 @@ def games(request):
     return products(request, prods)
 
 def products(request, prods):
-    if search_term := request.POST.get('search'):
-        print(search_term)
+    if search_term := request.GET.get('search'):
         search_query = SearchQuery(search_term, search_type='phrase')
-        prods = prods.annotate(
-            search=SearchVector('name', 'description', 'keywords', 'condition'))\
+        prods = prods.annotate(search=SearchVector('name', 'description',
+                                                   'keywords', 'condition'))\
             .filter(search=search_query)
     if sort_key := request.GET.get('sort'):
         prods = prods.order_by(sort_key)

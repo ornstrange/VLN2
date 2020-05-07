@@ -4,23 +4,35 @@
 {% block content %}
     <link rel="stylesheet" href="{% static 'css/products.css' %}">
     <main>
-        <div class="products">
+        <div class="products {% if not products %}no-prods{% endif %}">
+            {% if not products %}
+            <h3>No products found...<br>sorry!</h3>
+            {% endif %}
             <div class="filters">
-                <form method="post">
-                    {% csrf_token %}
-                    <input id="search" type="text" name="search">
-                    <button>Search</button>
+                <form action="{{ name }}" method="get">
+                    <div>
+                        <input type="text" name="search">
+                        <button class="btn" type="submit">Search</button>
+                    </div>
+                    {% if products %}
+                    <button name="sort" value="price" class="sort btn" type="submit">Cheap first</button>
+                    <button name="sort" value="-price" class="sort btn" type="submit">Cheap last</button>
+                    <button name="sort" value="name" class="sort btn" type="submit">Alphabetical</button>
+                    {% endif  %}
                 </form>
-                <a href="{{ name }}{% query_transform sort='price' %}">
-                    Sort cheapest first
-                </a>
-                <a href="{{ name }}{% query_transform sort='-price' %}">
-                    Sort cheapest last
-                </a>
-                <a href="{{ name }}{% query_transform sort='name' %}">
-                    Sort alphabetical
-                </a>
+                {% comment %} {% if products %} {% endcomment %}
+                {% comment %} <a class="sort btn" href="{{ name }}{% query_transform sort='price' %}"> {% endcomment %}
+                {% comment %}     Sort cheapest first {% endcomment %}
+                {% comment %} </a> {% endcomment %}
+                {% comment %} <a class="sort btn" href="{{ name }}{% query_transform sort='-price' %}"> {% endcomment %}
+                {% comment %}     Sort cheapest last {% endcomment %}
+                {% comment %} </a> {% endcomment %}
+                {% comment %} <a class="sort btn" href="{{ name }}{% query_transform sort='name' %}"> {% endcomment %}
+                {% comment %}     Sort alphabetical {% endcomment %}
+                {% comment %} </a> {% endcomment %}
+                {% comment %} {% endif %} {% endcomment %}
             </div>
+            {% if products %}
             {% for prod in products %}
             <a href="{{ prod.get_absolute_url }}" class="product">
                 <div class="img-container">
@@ -35,7 +47,9 @@
                 </div>
             </a>
             {% endfor %}
+            {% endif %}
         </div>
+        {% if products and products.paginator.num_pages != 1 %}
         <div class="pagination">
             {% if products.has_previous %}
             <a class="pagination-segment"
@@ -61,5 +75,6 @@
             </span>
             {% endif %}
         </div>
+        {% endif %}
     </main>
 {% endblock %}
