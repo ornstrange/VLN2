@@ -13,7 +13,24 @@
                     </button>
                 </form>
             {% elif name == '#user' %}
-                <a href="#">User</a>
+                {% if user.is_authenticated %}
+                    <div class="dropdown" style="float:right;">
+                        <a class="dropbtn1">{{ name|capfirst }}</a>
+                        <div class="dropdown-content">
+                            <a href="{% url 'logout' %}">Logout</a>
+                            
+                        </div>
+                {% else %}
+                    
+                    <div class="dropdown" style="float:right;">
+                        <a class="dropbtn2">{{ name|capfirst }}</a>
+                        <div class="dropdown-content">
+                            <a href="{% url 'login' %}">Login</a>
+                            <a href="{% url 'register' %}">Register</a>
+                        </div>
+                        
+                    </div>
+                {% endif %}    
             {% elif name == 'about' %}
                 <div class="dropdown" style="float:right;">
                     <a class="dropbtn">{{ name|capfirst }}</a>
