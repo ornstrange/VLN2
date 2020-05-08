@@ -1,11 +1,14 @@
 from products.models import Product
 
 def navigation_links(request):
-    user = "login"
-    return {'navbar_links': [
-        ["home", "games", "consoles"],
-        ["about", "cart", user, "register"]
-    ]}
+    # user logged in
+    authenticated = request.user.is_authenticated
+    # links
+    left = ['home', 'games', 'consoles']
+    center = ['#search']
+    right = ['about']
+    right += ['cart', '#user'] if authenticated else ['login']
+    return {'navbar_links': [left, center, right]}
 
 def names(request):
     name = request.resolver_match.url_name

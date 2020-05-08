@@ -3,10 +3,10 @@ from django.core.paginator import Paginator
 from django.shortcuts import render
 from . import models
 
-def search(objects, search_term, search_in):
+def search(products, search_term, search_in):
     search_query = SearchQuery(search_term, search_type='phrase')
     search_vector = SearchVector(*search_in)
-    return objects.annotate(search=search_vector).filter(search=search_query)
+    return products.annotate(search=search_vector).filter(search=search_query)
 
 def valid_per_page(per_page_param):
     if per_page_param:
@@ -14,6 +14,26 @@ def valid_per_page(per_page_param):
             if 1 < int(per_page_param) <= 64:
                 return int(per_page_param)
     return 16
+
+def find_keyword_opts(products):
+    skip = ['Game', 'Console']
+    keywords = {}
+    for product in products:
+        for keyword in product.keywords.split(', '):
+            if keyword not in skip:
+                if keyword in keywords:
+                    keywords[keyword] += 1
+                else:
+                    keywords[keyword] = 1
+    sorted_keys = sorted(keywords.keys(),
+                         key=lambda x: keywords[x],
+                         reverse=True)
+    output = []
+    for key in sorted_keys:
+        outstr = f"{key}. {keywords[key]} result"
+        outstr += "s." if keywords[key] > 1 else "."
+        output.append((key, outstr))
+    return output
 
 def consoles(request):
     prods = models.Product.objects.filter(category="Console")
@@ -31,6 +51,10 @@ def products(request, prods=None):
     if search_term := request.GET.get('search'):
         prods = search(prods, search_term, ('name', 'description',
                                             'keywords', 'condition'))
+    # keywords
+    keyword_opts = find_keyword_opts(prods)
+    if keyword := request.GET.get('keyword'):
+        prods = prods.filter(keywords__icontains=keyword)
     # sort
     if (sort_key := request.GET.get('sort')) in ['name', 'price', '-price']:
         prods = prods.order_by(sort_key)
@@ -41,7 +65,8 @@ def products(request, prods=None):
     page_num = request.GET.get('page')
     paged_prods = paginated_prods.get_page(page_num)
     context = {
-        'products': paged_prods
+        'products': paged_prods,
+        'keyword_opts': keyword_opts
     }
     return render(request, 'products/index.html', context)
 

@@ -15,7 +15,9 @@
                 <a class="filter btn" href="{{ name }}{% query_transform sort='name' %}">Alphabetical</a>
                 <select class="filter-sel btn" id="filter-keywords">
                     <option value="" hidden="true">Filter by keyword</option>
-                    <option class="sel-opt" value="doo"></option>
+                    {% for key, pretty in keyword_opts %}
+                    <option class="sel-opt" value="{{ key }}">{{ pretty }}</option>
+                    {% endfor %}
                 </select>
                 <select class="filter-sel btn" id="per-page">
                     <option value="" hidden="true">Items per page</option>

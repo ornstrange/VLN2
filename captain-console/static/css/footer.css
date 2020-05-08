@@ -1,59 +1,44 @@
 footer {
-
     grid-area: footer;
     width: 100%;
     height: 100%;
-    padding: 1em;
-
-    /* background: rgba(255, 255, 255, 0.5); */
-    /* box-shadow: 0 0 2em #00000010; */
-    /* border-top: 1px solid #999999; */
-    /* background: white; */
+    border-top: 1px solid #999999;
 }
 
-.info_container {
-    width: 600px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+.footer-container {
+    height: 100%;
+    margin: 0 auto;
+    padding: 0 2em;
+    max-width: 112em;
+    display: flex;
+    align-items: center;
 }
 
- .info_text p,li {
-    margin-top: 15px;
-    margin-bottom: 15px;
-}
-
-.info_list {
-    width: 500px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.bottominfo {
+.bottom-info {
+    width: 70%;
     display:flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
 }
 
-.bottominfo p,h5{
-    margin-top: 5px;
-    font-size: small;
-}
-.bottominfo h5{
-    margin-top: 18px;
-    font-size: small;
+.company-info {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
-
-.bottomline{
-    color:grey;
-    font-size: 10px;
-    text-align: center;
-    margin-top: 5px;
-
-
-
-
+.company-info h5 {
+    text-align: left;
+    border-bottom: 1px solid #999999;
+    padding-bottom: .25em;
 }
 
+.company-info p, .company-info a {
+    margin-top: .25em;
+}
 
+.bottom-line{
+    width: 30%;
+    color: #999999;
+    text-align: right;
+}
 

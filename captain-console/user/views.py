@@ -15,7 +15,6 @@ def register(request):
     return render(request, "user/register.html", {
         "form": UserCreationForm()
     })
-    
 
 def login_view(request):
     if request.method == "POST":
@@ -29,4 +28,3 @@ def login_view(request):
         "form": AuthenticationForm()
     })
 
- 

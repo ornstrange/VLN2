@@ -10,7 +10,6 @@
 
 a, button, input, select, option {
 	font-family: 'Open Sans', sans-serif;
-    font-size: 16px;
     border: none;
     background: white;
     text-decoration: none;
@@ -45,8 +44,9 @@ body {
     grid-template:
         "navbar" 3em
         "main" auto
-        "footer" 8em
+        "footer" 10em
         / 1fr;
+    grid-gap: 2em;
     align-items: center;
     justify-items: center;
     overflow-x: hidden;
@@ -55,6 +55,7 @@ body {
 .container {
     display: block;
     grid-area: main;
+    max-width: 112em;
     width: 100%;
 }
 
@@ -72,5 +73,25 @@ body {
 
 .btn:hover {
     background: #f2f2f2;
+}
+
+/* Breakpoints */
+/* large-screens */
+@media (max-width: 1800px) {
+    
+}
+/* normal-screen */
+@media (max-width: 1200px) {
+    
+}
+/* small-screen */
+@media (max-width: 900px) {
+    
+}
+/* small-phone-screen */
+@media (max-width: 600px) {
+    html {
+        font-size: 14px !important;
+    }
 }
 

@@ -2,24 +2,24 @@
 {% load static %}
 <nav>
     <div class="nav-container">
+        {% for link_group in navbar_links %}
         <div class="link-group">
-            {% for name in navbar_links.0 %}
-            <a class="{% active name title %}" href="{% url name %}">{{ name|capfirst }}</a>
+            {% for name in link_group %}
+            {% if name == '#search' %}
+                <form class="{% active title 'All' %}" id="search-form" action="{% url 'all' %}">
+                    <input class="search-bar" id="search-field" type="text" name="search" value="Search...">
+                    <button id="search-btn" type="submit">
+                        <img src="{% static 'img/search.svg' %}" alt="Search">
+                    </button>
+                </form>
+            {% elif name == '#user' %}
+                <a href="#">User</a>
+            {% else %}
+                <a class="{% active name title %}" href="{% url name %}">{{ name|capfirst }}</a>
+            {% endif %}
             {% endfor %}
         </div>
-        <div class="link-group">
-            <form class="{% active name 'all' %}" id="search-form" action="{% url 'all' %}">
-                <input class="search-bar" id="search-field" type="text" name="search" value="Search...">
-                <button id="search-btn" type="submit">
-                    <img src="{% static 'img/search.svg' %}" alt="Search">
-                </button>
-            </form>
-        </div>
-        <div class="link-group">
-            {% for name in navbar_links.1 %}
-            <a class="{% active name title %}" href="{% url name %}">{{ name|capfirst }}</a>
-            {% endfor %}
-        </div>
+        {% endfor %}
     </div>
 </nav>
 <script src="{% static 'js/navbar.js' %}"></script>

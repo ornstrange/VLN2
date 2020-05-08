@@ -3,10 +3,8 @@ main {
 }
 
 .products {
-    width: 100vw;
-    max-width: 114em;
     margin: 0 auto;
-    padding: 2em 2em 0 2em;
+    padding: 0 1em;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(24em, 1fr));
     justify-items: center;
@@ -63,6 +61,10 @@ main {
 
 .filters .filter {
     margin-top: 1em;
+}
+
+.filters .filter:first-child {
+    margin-top: 0;
 }
 
 .product {
@@ -127,7 +129,6 @@ main {
     text-align: center;
     display: flex;
     justify-content: center;
-    margin-bottom: 1em;
 }
 
 .pagination .pagination-segment {
