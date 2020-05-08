@@ -16,7 +16,7 @@
                 <a href="#">User</a>
             {% elif name == 'about' %}
                 <div class="dropdown" style="float:right;">
-                    <button class="dropbtn">{{ name|capfirst }}</button>
+                    <a class="dropbtn">{{ name|capfirst }}</a>
                     <div class="dropdown-content">
                         <a href="{% url 'about' %}">About Us</a>
                         <a href="{% url 'employees' %}">Employees</a>
