@@ -12,3 +12,9 @@ def contact(request):
 def terms(request):
     return render(request, 'about/terms.html')
 
+def social(request):
+    return render(request, 'about/social_responsibility.html')
+
+def shipping(request):
+    return render(request, 'about/shipping_returns.html')
+
