@@ -1,12 +1,12 @@
 from django.shortcuts import render
 
-def index(request):
-    return render(request, 'about/index.html')
+def about(request):
+    return render(request, 'about/about_us.html')
 
 def employees(request):
     return render(request, 'about/employees.html')
 
-def contact(request):
+def contacts(request):
     return render(request, 'about/contact.html')
 
 def terms(request):
@@ -17,4 +17,8 @@ def social(request):
 
 def shipping(request):
     return render(request, 'about/shipping_returns.html')
+
+def employees(request):
+    return render(request, 'about/employees.html')
+
 
