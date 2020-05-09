@@ -4,6 +4,9 @@ register = template.Library()
 
 @register.simple_tag
 def active(name, title):
+    if type(name) in [tuple, list]:
+        if title.lower() in name:
+            return "active"
     if name == title.lower():
         return "active"
     return ""

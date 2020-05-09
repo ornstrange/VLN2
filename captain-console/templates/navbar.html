@@ -14,7 +14,7 @@
             </form>
         {% elif item|typeof == 'tuple' %}
             <div class="dropdown">
-                <a class="nav-link">{{ item.0 }}</a>
+                <a class="{% active item.1 title %} nav-link">{{ item.0 }}</a>
                 <div class="dropdown-content">
                 {% for name in item.1 %}
                     <a class="nav-link" href="{% url name %}">{{ name|capfirst }}</a>
