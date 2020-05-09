@@ -30,8 +30,8 @@ def find_keyword_opts(products):
                          reverse=True)
     output = []
     for key in sorted_keys:
-        outstr = f"{key}. {keywords[key]} result"
-        outstr += "s." if keywords[key] > 1 else "."
+        outstr = f"{key} / {keywords[key]} result"
+        outstr += "s" if keywords[key] > 1 else ""
         output.append((key, outstr))
     return output
 
@@ -53,8 +53,11 @@ def products(request, prods=None):
                                             'keywords', 'condition'))
     # keywords
     keyword_opts = find_keyword_opts(prods)
+    active_filter = None
     if keyword := request.GET.get('keyword'):
-        prods = prods.filter(keywords__icontains=keyword)
+        if keyword != 'reset':
+            active_filter = keyword
+            prods = prods.filter(keywords__icontains=keyword)
     # sort
     if (sort_key := request.GET.get('sort')) in ['name', 'price', '-price']:
         prods = prods.order_by(sort_key)
@@ -66,7 +69,9 @@ def products(request, prods=None):
     paged_prods = paginated_prods.get_page(page_num)
     context = {
         'products': paged_prods,
-        'keyword_opts': keyword_opts
+        'keyword_opts': keyword_opts,
+        'active_filter': active_filter,
+        'per_page': per_page
     }
     return render(request, 'products/index.html', context)
 

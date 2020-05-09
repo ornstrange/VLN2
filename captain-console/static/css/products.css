@@ -4,7 +4,7 @@ main {
 
 .products {
     margin: 0 auto;
-    padding: 0 1em;
+    padding: 0 1rem;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(24rem, 1fr));
     justify-items: center;
@@ -18,8 +18,7 @@ main {
 }
 
 .filters {
-    padding: 1em;
-    /* grid-area: span 3; */
+    padding: 1rem;
     background: #f2f2f2;
     border: 1px solid #999999;
     width: calc(100% + 2px);
@@ -29,27 +28,22 @@ main {
     justify-content: center;
 }
 
-.filters form {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.filters > * {
+    margin-bottom: 1rem;
 }
 
-.filters form div {
-    display: flex;
-    width: 100%;
+.filters .filter-title {
+    margin-bottom: .25rem;
 }
 
-.filters form input {
-    width: 100%;
-    margin-right: 1rem;
+.filters:last-child {
+    margin-bottom: 0;
 }
+
 
 .filters .filter-sel {
     width: 100%;
     border: 1px solid #999999;
-    margin-top: 1rem;
     padding: 0;
     text-align: center;
     text-align-last: center;
@@ -57,14 +51,6 @@ main {
 
 .filters .filter-sel option {
     padding-left: calc(50% - 2rem);
-}
-
-.filters .filter {
-    margin-top: 1rem;
-}
-
-.filters .filter:first-child {
-    margin-top: 0;
 }
 
 .product {
@@ -77,7 +63,6 @@ main {
 
 .product:hover {
     background: #efefef;
-    /* z-index: 9999; */
 }
 
 .product:hover .hover-info {
@@ -164,6 +149,7 @@ main {
 }
 
 .product-single .desc {
+    width: 100%;
     border-top: 1px solid #999999;
     border-bottom: 1px solid #999999;
     background: #f2f2f2;

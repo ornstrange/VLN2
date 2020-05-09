@@ -10,17 +10,27 @@
             {% endif %}
             {% if products %}
             <div class="filters">
+                <span class="filter-title">Sort</span>
                 <a class="filter btn" href="{{ name }}{% query_transform sort='price' %}">Price: Lowest to highest</a>
                 <a class="filter btn" href="{{ name }}{% query_transform sort='-price' %}">Price: Highest to lowest</a>
                 <a class="filter btn" href="{{ name }}{% query_transform sort='name' %}">Alphabetical</a>
+                <span class="filter-title">Filter</span>
                 <select class="filter-sel btn" id="filter-keywords">
-                    <option value="" hidden="true">Filter by keyword</option>
+                    {% if active_filter %}
+                    <option value="" hidden="true">{{ active_filter }}</option>
+                    <option value="reset">Clear filter</option>
+                    {% else %}
+                    <option value="" hidden="true">None</option>
+                    {% endif %}
                     {% for key, pretty in keyword_opts %}
+                    {% if key != active_filter %}
                     <option class="sel-opt" value="{{ key }}">{{ pretty }}</option>
+                    {% endif %}
                     {% endfor %}
                 </select>
+                <span class="filter-title">Products per page</span>
                 <select class="filter-sel btn" id="per-page">
-                    <option value="" hidden="true">Items per page</option>
+                    <option value="" hidden="true">{{ per_page }}</option>
                     <option class="sel-opt" value="8">8</option>
                     <option class="sel-opt" value="16">16</option>
                     <option class="sel-opt" value="32">32</option>

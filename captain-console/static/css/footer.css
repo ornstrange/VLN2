@@ -3,42 +3,37 @@ footer {
     width: 100%;
     height: 100%;
     border-top: 1px solid #999999;
-}
-
-.footer-container {
-    height: 100%;
-    margin: 0 auto;
-    padding: 0 2em;
-    max-width: 112em;
     display: flex;
     align-items: center;
 }
 
-.bottom-info {
-    width: 70%;
-    display:flex;
+footer .container {
+    margin: 0 auto;
+    padding: 0 2rem 1rem 2rem;
+    width: 100%;
+    max-width: 112rem;
+    display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
 }
 
-.company-info {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
+footer .container > * {
+    padding-top: 1rem;
+    width: 100%;
+    max-width: 14rem;
 }
 
-.company-info h5 {
-    text-align: left;
+.info {
+    margin: 0 .5rem;
+}
+
+footer .container .info h5 {
+    padding-bottom: .5rem;
+    margin-bottom: .5rem;
     border-bottom: 1px solid #999999;
-    padding-bottom: .25em;
-}
+} 
 
-.company-info p, .company-info a {
-    margin-top: .25em;
-}
-
-.bottom-line{
-    width: 30%;
+footer .container .copyright {
     color: #999999;
-    text-align: right;
 }
 
