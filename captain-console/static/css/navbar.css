@@ -40,15 +40,15 @@ nav {
     width: 1em;
 }
 
-.nav-container .link-group a {
+.nav-link {
+    width: 7em;
     height: 100%;
     display: block;
     line-height: 3em;
-    width: 6em;
     text-align: center;
 }
 
-.nav-container .link-group a:hover {
+.nav-link:hover {
     background: #f2f2f2;
 }
 
@@ -57,7 +57,7 @@ nav {
     border: 1px solid #999999;
     border-top: none;
     border-bottom: 1px solid white;
-    z-index: 99999;
+    z-index: 999;
 }
 
 .nav-container .link-group .active:hover {
@@ -67,12 +67,17 @@ nav {
 }
 
 .dropdown-content {
-  display: none;
-  position: absolute;
+    background: white;
+    display: none;
+    position: absolute;
+    top: 0;
+    border: 1px solid #999999;
+    border-top: none;
+    flex-direction: column;
 }
 
-
 .dropdown:hover .dropdown-content {
-    display: block;
+    display: flex;
+    z-index: 9999;
 }
 

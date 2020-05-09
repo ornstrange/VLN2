@@ -8,3 +8,7 @@ def active(name, title):
         return "active"
     return ""
 
+@register.filter
+def typeof(variable):
+    return type(variable).__name__
+

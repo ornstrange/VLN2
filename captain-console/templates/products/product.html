@@ -1,13 +1,22 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-    <div>
-        <h1>{{ prod.name }}</h1>
+    <link rel="stylesheet" href="{% static 'css/products.css' %}">
+    <div class="product-single">
+        <h3>{{ prod.name }}</h3>
+        <div class="images">
         {% for img in prod.imglist %}
-            <img style="width: 14em;" src="{% static 'img/products/'|add:img %}" alt="">
+            <img src="{% static 'img/products/'|add:img %}" alt="{{ prod.name }}">
         {% endfor %}
+        </div>
         <h3>{{ prod.price }} kr.</h3>
-        <p>{{ prod.description }}</p>
-        <p>{{ prod.keywords }}</p>
+        <p class="desc">{{ prod.description }}</p>
+        {% comment %} <p>{{ prod.keywords }}</p> {% endcomment %}
+        <div class="buttons">
+            <button class="btn">Add to cart</button>
+            {% if prev %}
+            <a class="btn" href="{{ prev }}">Go back</a>
+            {% endif %}
+        </div>
     </div>
 {% endblock %}

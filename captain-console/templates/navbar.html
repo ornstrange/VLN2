@@ -2,34 +2,31 @@
 {% load static %}
 <nav>
     <div class="nav-container">
-        {% for link_group in navbar_links %}
+    {% for link_group in navbar_links %}
         <div class="link-group">
-            {% for name in link_group %}
-            {% if name == '#search' %}
-                <form class="{% active title 'All' %}" id="search-form" action="{% url 'all' %}">
-                    <input class="search-bar" id="search-field" type="text" name="search" value="Search...">
-                    <button id="search-btn" type="submit">
-                        <img src="{% static 'img/search.svg' %}" alt="Search">
-                    </button>
-                </form>
-            {% elif name == '#user' %}
-                <a href="#">User</a>
-            {% elif name == 'about' %}
-                <div class="dropdown" style="float:right;">
-                    <a class="dropbtn">{{ name|capfirst }}</a>
-                    <div class="dropdown-content">
-                        <a href="{% url 'about' %}">About Us</a>
-                        <a href="{% url 'employees' %}">Employees</a>
-                        <a href="{% url 'contacts' %}">Contacts</a>
-                    </div>
+        {% for item in link_group %}
+        {% if item == 'search' %}
+            <form class="{% active item title %}" id="search-form" action="{% url item %}">
+                <input class="search-bar" id="search-field" type="text" name="search" value="Search...">
+                <button id="search-btn" type="submit">
+                    <img src="{% static 'img/search.svg' %}" alt="Search">
+                </button>
+            </form>
+        {% elif item|typeof == 'tuple' %}
+            <div class="dropdown">
+                <a class="nav-link">{{ item.0 }}</a>
+                <div class="dropdown-content">
+                {% for name in item.1 %}
+                    <a class="nav-link" href="{% url name %}">{{ name|capfirst }}</a>
+                {% endfor %}
                 </div>
-
-            {% else %}
-                <a class="{% active name title %}" href="{% url name %}">{{ name|capfirst }}</a>
-            {% endif %}
-            {% endfor %}
-        </div>
+            </div>
+        {% else %}
+            <a class="nav-link {% active item title %}" href="{% url item %}">{{ item|capfirst }}</a>
+        {% endif %}
         {% endfor %}
+        </div>
+    {% endfor %}
     </div>
 </nav>
 <script src="{% static 'js/navbar.js' %}"></script>

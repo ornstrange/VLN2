@@ -2,12 +2,15 @@ from products.models import Product
 
 def navigation_links(request):
     # user logged in
-    authenticated = request.user.is_authenticated
+    user_authenticated = request.user.is_authenticated
     # links
     left = ['home', 'games', 'consoles']
-    center = ['#search']
-    right = ['about']
-    right += ['cart', '#user'] if authenticated else ['login']
+    center = ['search']
+    right = [('Information', ('about', 'employees', 'contact'))]
+    if user_authenticated:
+        right += [('User', ('profile', 'logout')), 'cart']
+    else:
+        right += ['login']
     return {'navbar_links': [left, center, right]}
 
 def names(request):

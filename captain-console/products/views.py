@@ -72,8 +72,10 @@ def products(request, prods=None):
 
 def product(request, id):
     prod = models.Product.objects.get(pk=id)
+    prev = request.META.get('HTTP_REFERER')
     context = {
-        'prod': prod
+        'prod': prod,
+        'prev': prev
     }
     return render(request, 'products/product.html', context)
 
