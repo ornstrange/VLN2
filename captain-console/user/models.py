@@ -7,7 +7,7 @@ class Customer(models.Model):
                                 on_delete=models.CASCADE)
     name = models.TextField(null=True)
     avatar = models.ImageField()
-    last_search = models.ForeignKey(Search,
+    last_search = models.ForeignKey('Search',
                                     null=True,
                                     on_delete=models.SET_NULL)
     active_cart = models.ForeignKey(Cart,

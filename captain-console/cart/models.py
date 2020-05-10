@@ -15,6 +15,6 @@ class Cart_item(models.Model):
                                 on_delete=models.SET_NULL)
     total_price = models.IntegerField(default=0)
     quantity = models.IntegerField(default=1)
-    cart = models.ForeignKey(Cart,
+    cart = models.ForeignKey('Cart',
                              on_delete=models.CASCADE)
 
