@@ -1,6 +1,7 @@
 let per_page = document.getElementById('per-page');
 let filter_keywords = document.getElementById('filter-keywords');
 
+
 per_page.addEventListener('change', (e) => {
     if (parseInt(per_page.value) !== undefined) {
         let url = new URL(document.location.href);
@@ -18,4 +19,5 @@ filter_keywords.addEventListener('change', (e) => {
     url.search = params;
     window.location.replace(url.toString());
 });
+
 
