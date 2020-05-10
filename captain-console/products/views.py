@@ -2,6 +2,7 @@ from django.contrib.postgres.search import SearchVector, SearchQuery
 from django.core.paginator import Paginator
 from django.shortcuts import render
 from . import models
+import random
 
 def search(products, search_term, search_in):
     search_query = SearchQuery(search_term, search_type='phrase')
