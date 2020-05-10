@@ -12,7 +12,10 @@
         <h3>{{ prod.price }} kr.</h3>
         <p class="desc">{{ prod.description }}</p>
         <div class="buttons">
-            <button class="btn">Add to cart</button>
+            <form action="{% url 'add' %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn" name="id" value="{{ prod.id }}">Add to cart</button>
+            </form>
             {% if prev %}
             <a class="btn" href="{{ prev }}">Go back</a>
             {% endif %}

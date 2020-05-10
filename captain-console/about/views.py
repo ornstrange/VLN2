@@ -21,4 +21,3 @@ def shipping(request):
 def employees(request):
     return render(request, 'about/employees.html')
 
-

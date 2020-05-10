@@ -5,7 +5,6 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate
 
-# Create your views here.
 def register(request):
     if request.method == "POST":
         form = UserCreationForm(data=request.POST)
@@ -23,7 +22,6 @@ def login_view(request):
             user = form.get_user()
             login(request, user)
             return redirect("home")
-
     return render(request, "user/login.html", {
         "form": AuthenticationForm()
     })

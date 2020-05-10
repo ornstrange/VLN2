@@ -180,6 +180,12 @@ main {
     justify-content: center;
 }
 
+.product-single .buttons form {
+    width: 100%;
+    max-width: 18rem;
+    margin: 0 .5rem;
+}
+
 .product-single .btn {
     width: 100%;
     max-width: 18rem;
