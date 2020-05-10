@@ -1,8 +1,7 @@
-from django.shortcuts import render
-from django.http import HttpResponse
-from products import models as prod_models
-from user import models as user_models
-from . import models as cart_models
+from django.shortcuts import render, redirect
+from products.models import Product
+from user.models import Customer
+from cart.models import Cart
 
 def index(request):
     return render(request, 'cart/index.html')
@@ -12,11 +11,11 @@ def checkout(request):
 
 def add(request):
     if request.user.is_authenticated:
-        id_ = request.POST.get('id')
-        prod = prod_models.Product.objects.get(pk=id_)
-        user = user_models.User_profile.objects.get(user=request.user)
-        print(user)
-        return HttpResponse("x")
+        prod_id = request.POST.get('id')
+        prod = Product.objects.get(pk=prod_id)
+        print(Customer.objects.all())
+        print(request.user.pk)
+        return redirect('product', prod.id)
     else:
-        return HttpResponse("Not logged in")
+        return redirect('product', prod.id)
 

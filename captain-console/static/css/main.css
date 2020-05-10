@@ -10,7 +10,7 @@
 
 a, button, input, select, option {
 	font-family: 'Open Sans', sans-serif;
-    border: none;
+    /* border: none; */
     background: white;
     text-decoration: none;
     color: black;

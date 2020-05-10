@@ -1,7 +1,8 @@
 from django.contrib.postgres.search import SearchVector, SearchQuery
 from django.core.paginator import Paginator
 from django.shortcuts import render
-from . import models
+from user.models import Search
+from products.models import Product
 
 def search(products, search_term, search_in):
     search_query = SearchQuery(search_term, search_type='phrase')
@@ -36,21 +37,28 @@ def find_keyword_opts(products):
     return output
 
 def consoles(request):
-    prods = models.Product.objects.filter(category="Console")
+    prods = Product.objects.filter(category="Console")
     return products(request, prods)
 
 def games(request):
-    prods = models.Product.objects.filter(category="Game")
+    prods = Product.objects.filter(category="Game")
     return products(request, prods)
 
 def products(request, prods=None):
     # all products
     if not prods:
-        prods = models.Product.objects.all()
+        prods = Product.objects.all()
     # search
     if search_term := request.GET.get('search'):
         prods = search(prods, search_term, ('name', 'description',
                                             'keywords', 'condition'))
+        # add Search object to user if relevant
+        if len(prods) > 0 and request.user.is_authenticated:
+            search_obj = Search(user=request.user.customer,
+                                search_term=search_term)
+            request.user.customer.last_search = search_obj
+            search_obj.save()
+            request.user.save()
     # keywords
     keyword_opts = find_keyword_opts(prods)
     active_filter = None
@@ -76,7 +84,7 @@ def products(request, prods=None):
     return render(request, 'products/index.html', context)
 
 def product(request, id):
-    prod = models.Product.objects.get(pk=id)
+    prod = Product.objects.get(pk=id)
     prev = request.META.get('HTTP_REFERER')
     context = {
         'prod': prod,

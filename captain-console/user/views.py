@@ -4,15 +4,20 @@ from user.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate
+from . import forms
 
 def register(request):
     if request.method == "POST":
-        form = UserCreationForm(data=request.POST)
+        form = forms.SignupForm(data=request.POST)
         if form.is_valid():
             form.save()
-            return redirect("login")
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return redirect('home')
     return render(request, "user/register.html", {
-        "form": UserCreationForm()
+        "form": forms.SignupForm()
     })
 
 def login_view(request):
