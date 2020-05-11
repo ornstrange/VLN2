@@ -8,8 +8,8 @@
         {% for item in cart_items %}
         <form class="cart-item" method="post">
             {% csrf_token %}
-            <button class="remove btn" name="remove" value="{{ item.id }}">
-                X
+            <button class="remove" name="remove" value="{{ item.id }}">
+                <img src="{% static 'img/delete.svg' %}" alt="delete">
             </button>
             <img class="image"
                  src="{% static 'img/products/'|add:item.product.thumbimg %}"
@@ -23,19 +23,19 @@
                 </p>
             </div>
             <div class="quantity">
-                <button class="btn" type="button">
-                    -
+                <button type="button">
+                    <img src="{% static 'img/subtract.svg' %}" alt="subtract">
                 </button>
-                <input type="number" value={{ item.quantity }} readonly></input>
-                <button class="btn" type="button">
-                    +
+                <input type="text" value={{ item.quantity }} readonly></input>
+                <button type="button">
+                    <img src="{% static 'img/add.svg' %}" alt="add">
                 </button>
             </div>
             <p class="single-price">
-                {{ item.product.price }}
+                {{ item.product.price }} kr.
             </p>
             <p class="total-price">
-                {{ item.total_price }}
+                {{ item.total_price }} kr.
             </p>
         </form>
         {% endfor %}
