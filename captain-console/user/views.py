@@ -31,3 +31,6 @@ def login_view(request):
         "form": AuthenticationForm()
     })
 
+def profile_view(request):
+    return render(request, "user/profile.html")
+
