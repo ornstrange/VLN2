@@ -10,12 +10,12 @@
 }
 
 .info_text >p{
-    margin-bottom:10px;
-    margin-top: 10px;
+    margin-bottom: 0.5em;
+    margin-top: 0.5em;
 }
 
 .info_text >h3,h2{
-    margin-bottom:10px;
-    margin-top: 15px;
+    margin-bottom:0.5em;
+    margin-top: 1em;
 }
 
