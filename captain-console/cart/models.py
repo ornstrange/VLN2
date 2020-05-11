@@ -29,7 +29,6 @@ def calc_total_price(sender, instance, **kwargs):
 
 @receiver(post_save, sender=Cart_item)
 def update_cart_price(sender, instance, created, **kwargs):
-    if created:
-        instance.cart.total_price += instance.total_price
-        instance.cart.save()
+    instance.cart.total_price += instance.total_price
+    instance.cart.save()
 

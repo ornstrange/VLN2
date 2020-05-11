@@ -5,11 +5,10 @@ from cart.models import Cart, Cart_item
 
 def index(request):
     cart = request.user.customer.active_cart
-    if cart:
-        cart_items = Cart_item.objects.filter(cart=cart)
+    cart_items = Cart_item.objects.filter(cart=cart) if cart else None
     context = {
-        "cart": cart,
-        "cart_items": cart_items
+        'cart': cart,
+        'cart_items': cart_items
     }
     return render(request, 'cart/index.html', context=context)
 

@@ -1,18 +1,51 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
-    {% if cart %}
-        <h3>Cart</h3>
-        {{ cart.total_price }}
+    <link rel="stylesheet" href="{% static 'css/cart.css' %}">
+    <div class="cart-container">
+        {% if cart %}
+        <h3 class="cart-title">Your cart</h3>
         {% for item in cart_items %}
-            {{ item.product.name }}
-            {{ item.total_price }}
-            {{ item.product.price }}
+        <form class="cart-item" method="post">
+            {% csrf_token %}
+            <button class="remove btn" name="remove" value="{{ item.id }}">
+                X
+            </button>
+            <img class="image"
+                 src="{% static 'img/products/'|add:item.product.thumbimg %}"
+                 alt="{{ item.product.name }}">
+            <div class="description">
+                <p>
+                    {{ item.product.name }}
+                </p>
+                <p class="category">
+                    {{ item.product.category }}
+                </p>
+            </div>
+            <div class="quantity">
+                <button class="btn" type="button">
+                    -
+                </button>
+                <input type="number" value={{ item.quantity }} readonly></input>
+                <button class="btn" type="button">
+                    +
+                </button>
+            </div>
+            <p class="single-price">
+                {{ item.product.price }}
+            </p>
+            <p class="total-price">
+                {{ item.total_price }}
+            </p>
+        </form>
         {% endfor %}
-    {% else %}
-    <h3>
-        Your cart seems to be empty.<br>
-        Go buy something!<br>
-        Please...
-    </h3>
-    {% endif %}
+        <p class="price">{{ cart.total_price }}</p>
+        {% else %}
+        <h3>
+            Your cart seems to be empty.<br>
+            Go buy something!<br>
+            Please...
+        </h3>
+        {% endif %}
+    </div>
 {% endblock %}

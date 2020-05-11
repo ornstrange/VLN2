@@ -7,7 +7,7 @@ from cart.models import Cart
 class Customer(models.Model):
     user = models.OneToOneField(User,
                                 on_delete=models.CASCADE)
-    avatar = models.ImageField()
+    avatar = models.ImageField(null=True)
     last_search = models.ForeignKey('Search',
                                     null=True,
                                     on_delete=models.SET_NULL)
@@ -15,14 +15,12 @@ class Customer(models.Model):
                                   null=True,
                                   on_delete=models.SET_NULL)
 
-@receiver(post_save, sender=User)
+@receiver(post_save, sender='auth.User')
 def create_customer(sender, instance, created, **kwargs):
     if created:
         Customer.objects.create(user=instance)
-
-@receiver(post_save, sender=User)
-def save_customer(sender, instance, **kwargs):
-    instance.customer.save()
+    else:
+        instance.customer.save()
 
 class Search(models.Model):
     user = models.ForeignKey('Customer',
