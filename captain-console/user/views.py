@@ -3,6 +3,7 @@ from django.contrib.auth.hashers import make_password, check_password
 from user.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate
 from . import forms
 
@@ -34,3 +35,14 @@ def login_view(request):
 def profile_view(request):
     return render(request, "user/profile.html")
 
+def edit_profile(request):
+    if request.method == "POST":
+        form = EditProfileForm(request.POST, isinstance=request.user)
+
+    if form.is_valid():
+        form.save()
+        return redirect('home')
+    else:
+        form = EditProfileForm(isinstance=request.user)
+        args = {'form':form}
+        return render(request, "user/profile.html",args)
