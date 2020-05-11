@@ -1,21 +1,19 @@
 from django.shortcuts import render
-from products import models
+from products.models import Product
+from random import sample, seed
 from datetime import date
-import random
-from random import choice
 
 
-def random_items(today):
-    items = models.Product.objects.all()
-    random.seed(hash(today))
-    # change 3 to how many random items you want
-    randomitems = random.sample(list(items), 3)
-    return randomitems
-
+def daily_random_products(count = 3):
+    products = list(Product.objects.all())
+    seed(str(date.today()))
+    sampled_prods = sample(products, count)
+    return sampled_prods
 
 def index(request):
-    today = str(date.today())
-    items = random_items(today)
-    products = items
-    context = {"products":products}
+    products = daily_random_products()
+    context = {
+        "products": products
+    }
     return render(request, 'index.html', context=context)
+

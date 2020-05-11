@@ -3,10 +3,11 @@ main {
 }
 
 .products {
+    width: 100%;
     margin: 0 auto;
     padding: 0 1rem;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(24rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(24rem, 1fr));
     justify-items: center;
     align-items: center;
 }

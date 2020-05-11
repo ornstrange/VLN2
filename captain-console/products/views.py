@@ -3,7 +3,6 @@ from django.core.paginator import Paginator
 from django.shortcuts import render
 from user.models import Search
 from products.models import Product
-import random
 
 def search(products, search_term, search_in):
     search_query = SearchQuery(search_term, search_type='phrase')

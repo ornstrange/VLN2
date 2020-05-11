@@ -10,7 +10,7 @@
 
 a, button, input, select, option {
 	font-family: 'Open Sans', sans-serif;
-    /* border: none; */
+    border: none;
     background: white;
     text-decoration: none;
     color: black;
@@ -28,12 +28,12 @@ h1, h3, h5 {
     font-family: 'Montserrat', sans-serif;
 	font-weight: 700;
 } h1 {
-    font-size: 4em;
+    font-size: 4rem;
 } h3 {
-    font-size: 2em;
+    font-size: 2rem;
 } h5 {
 	font-weight: 500;
-    font-size: 1.2em;
+    font-size: 1.2rem;
 }
 
 body {
@@ -42,11 +42,11 @@ body {
     background: white;
     display: grid;
     grid-template:
-        "navbar" 3em
+        "navbar" 3rem
         "main" auto
-        "footer" 10em
+        "footer" 10rem
         / 1fr;
-    grid-gap: 2em;
+    grid-gap: 2rem;
     align-items: center;
     justify-items: center;
     overflow-x: hidden;
@@ -55,7 +55,7 @@ body {
 .container {
     display: block;
     grid-area: main;
-    max-width: 112em;
+    max-width: 112rem;
     width: 100%;
 }
 
@@ -67,12 +67,22 @@ body {
 
 .btn {
     text-align: center;
-    padding: .25em 1em;
+    padding: .25em 1rem;
     border: 1px solid #999999;
 }
 
 .btn:hover {
     background: #f2f2f2;
+}
+
+/* Home page */
+.landing-description {
+    margin: 0 auto;
+    max-width: 60rem;
+}
+
+.daily-title {
+    margin: 2rem 0 1rem 0;
 }
 
 /* Breakpoints */

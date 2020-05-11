@@ -2,7 +2,31 @@
 {% load static %}
 {% load url_manipulation %}
 {% block content %}
-    <h1>Welcome to Captain Console!</h1>
-    <h3>Featured products of the day:</h3>
-     {% include 'products/dailyproducts.html' with product=product %}
+    <link rel="stylesheet" href="{% static 'css/products.css' %}">
+    <h1>
+        Welcome to Captain Console!
+    </h1>
+    <p class="landing-description">
+        {% lorem %}
+    </p>
+    <h3 class="daily-title">
+        Featured products of the day:
+    </h3>
+    <div class="products">
+        {% for prod in products %}
+        <a href="{{ prod.get_absolute_url }}" class="product">
+            <div class="img-container">
+                <img src="{% static 'img/products/'|add:prod.thumbimg %}"
+                alt="{{ prod.name }}">
+            </div>
+            <div class="info">
+                <p class="title">{{ prod.name }}</p>
+                <p class="price">{{ prod.price }} kr.</p>
+            </div>
+            <div class="hover-info">
+                <p class="desc">{{ prod.short_desc }}</p>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
 {% endblock %}

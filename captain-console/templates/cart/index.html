@@ -1,4 +1,18 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h1>Cart</h1>
+    {% if cart %}
+        <h3>Cart</h3>
+        {{ cart.total_price }}
+        {% for item in cart_items %}
+            {{ item.product.name }}
+            {{ item.total_price }}
+            {{ item.product.price }}
+        {% endfor %}
+    {% else %}
+    <h3>
+        Your cart seems to be empty.<br>
+        Go buy something!<br>
+        Please...
+    </h3>
+    {% endif %}
 {% endblock %}
