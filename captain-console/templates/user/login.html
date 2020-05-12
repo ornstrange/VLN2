@@ -3,10 +3,14 @@
     <h1>Login</h1>
     <form class="site-form" action="/user/login/" method="POST">
         {% csrf_token %}
-        {{form}}
-    <input type = "submit" class="btn btn primary" value="Login">
-    <p>Don't have an account yet? <a href="{% url 'register' %}"
-        >Sign up now!</a></p>
+        <ul class="basic-form">
+            {{ form.as_ul }}
+            <li>
+                <button class="btn" type="submit">Login</button>
+            </li>
+            
+        </ul>
+        <p class="register_link">Don't have an account yet? <a class="signup_link" href="{% url 'register' %}">Sign up now!</a></p>
     </form>
 {% endblock %}
 
