@@ -14,7 +14,14 @@
             </form>
         {% elif item|typeof == 'tuple' %}
             <div class="dropdown">
+                {% if item.0|typeof == 'SimpleLazyObject' %}
+                <a class="{% active item.1 title %} nav-link user-link">
+                    <p>{{ item.0 }}</p>
+                    <img class="avatar" src="{{ item.0.customer.avatar.url }}">
+                </a>
+                {% else %}
                 <a class="{% active item.1 title %} nav-link">{{ item.0 }}</a>
+                {% endif %}
                 <div class="dropdown-content">
                 {% for name in item.1 %}
                     <a class="nav-link" href="{% url name %}">{{ name|capfirst }}</a>

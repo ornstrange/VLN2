@@ -1,10 +1,13 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.http import Http404
 from products.models import Product
 from user.models import Customer
 from cart.models import Cart, Cart_item
+from cart.forms import Contact_info_form, Payment_info_form
 
+# Cart
 @login_required
 def index(request):
     cart = request.user.customer.active_cart
@@ -16,11 +19,10 @@ def index(request):
     }
     return render(request, 'cart/index.html', context=context)
 
-def checkout(request):
-    return render(request, 'cart/checkout.html')
-
 @login_required
 def add_quantity(request):
+    if request.method == "GET":
+        raise Http404()
     cart_item_id = request.POST.get('id')
     cart_item = Cart_item.objects.get(pk=cart_item_id)
     if cart_item.quantity < 10:
@@ -32,6 +34,8 @@ def add_quantity(request):
 
 @login_required
 def dec_quantity(request):
+    if request.method == "GET":
+        raise Http404()
     cart_item_id = request.POST.get('id')
     cart_item = Cart_item.objects.get(pk=cart_item_id)
     if cart_item.quantity > 1:
@@ -44,12 +48,14 @@ def dec_quantity(request):
 
 @login_required
 def delete(request):
+    if request.method == "GET":
+        raise Http404()
     customer = request.user.customer
     if customer.active_cart:
         # delete item from cart
         cart_item_id = request.POST.get('id')
-        cart_item = Cart_item.objects.get(pk=cart_item_id)
-        if cart_item:
+        if Cart_item.objects.filter(pk=cart_item_id):
+            cart_item = Cart_item.objects.get(pk=cart_item_id)
             msg = f"{cart_item.product.name} has been removed from your cart."
             messages.warning(request, msg)
             cart_item.delete()
@@ -58,6 +64,8 @@ def delete(request):
 @login_required
 def add(request):
     # add item to cart
+    if request.method == "GET":
+        raise Http404()
     prod_id = request.POST.get('id')
     quantity = request.POST.get('quantity') or 1
     if type(quantity) == str:
@@ -65,10 +73,16 @@ def add(request):
     prod = Product.objects.get(pk=prod_id)
     customer = request.user.customer
     if customer.active_cart: # has active cart
-        cart_item = Cart_item(quantity=quantity,
-                              product=prod,
-                              cart=customer.active_cart)
-        cart_item.save()
+        if found := customer.active_cart.contains(prod):
+            found.quantity += quantity
+            if found.quantity > 10:
+                found.quantity = 10
+            found.save()
+        else:
+            cart_item = Cart_item(quantity=quantity,
+                                  product=prod,
+                                  cart=customer.active_cart)
+            cart_item.save()
     else: # create one
         new_cart = Cart(user=request.user,
                         status='Active')
@@ -81,4 +95,49 @@ def add(request):
         customer.save()
     messages.info(request, f"{prod.name} has been added to your cart.")
     return redirect(prod)
+
+# Checkout
+@login_required
+def checkout(request):
+    if request.user.customer.active_cart:
+        if request.method == "POST":
+            form = Contact_info_form(data=request.POST)
+            if form.is_valid:
+                form.save()
+                print(form)
+                return render(request, 'index.html')
+        context = {
+            'form': Contact_info_form(),
+            'style': 'checkout.css'
+        }
+        return render(request, 'cart/checkout.html', context)
+    else:
+        raise Http404()
+
+@login_required
+def checkout_payment(request):
+    if request.user.customer.active_cart:
+        if request.method == "POST":
+            pass
+        context = {
+            'form': Contact_info_form(),
+            'style': 'checkout.css'
+        }
+        return render(request, 'cart/checkout_payment.html', context)
+    else:
+        raise Http404()
+
+@login_required
+def checkout_review(request):
+    if request.user.customer.active_cart:
+        return render(request, 'cart/checkout_review.html', context)
+    else:
+        raise Http404()
+
+@login_required
+def checkout_confirm(request):
+    if request.user.customer.active_cart:
+        return render(request, 'cart/checkout_confirm.html', context)
+    else:
+        raise Http404()
 

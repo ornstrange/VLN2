@@ -3,7 +3,6 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
 from user.models import Customer
-from . import models
 
 class SignupForm(UserCreationForm):
     first_name = forms.CharField(max_length=64,
@@ -24,11 +23,11 @@ class SignupForm(UserCreationForm):
 class EditProfileForm(UserChangeForm):
     avatar = forms.ImageField(required=False,
                               help_text="Optional.")
-    model = models.Customer
+    model = Customer
     fields = ("avatar",)
 
     class Meta:
         model = User
         fields = ('first_name', 'last_name', 'email')
-    
+
 

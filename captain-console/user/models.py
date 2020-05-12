@@ -7,14 +7,15 @@ from cart.models import Cart
 class Customer(models.Model):
     user = models.OneToOneField(User,
                                 on_delete=models.CASCADE)
-    avatar = models.ImageField(upload_to='media',null=True)
+    avatar = models.ImageField(upload_to='media',
+                               null=True)
     last_search = models.ForeignKey('Search',
                                     null=True,
                                     on_delete=models.SET_NULL)
     active_cart = models.ForeignKey(Cart,
                                   null=True,
                                   on_delete=models.SET_NULL)
-    
+
 
 @receiver(post_save, sender='auth.User')
 def create_customer(sender, instance, created, **kwargs):

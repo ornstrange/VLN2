@@ -21,6 +21,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
+    'django_countries',
     'captain_console',
     'user.apps.UserConfig',
     'products.apps.ProductsConfig',

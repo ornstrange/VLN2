@@ -1,7 +1,7 @@
 .info_text{
     width: 60vw;
     margin:auto;
-    line-height: 2em;
+    line-height: 2rem;
 }
 
 .infolist{
@@ -9,13 +9,13 @@
     margin:auto;
 }
 
-.info_text >p{
-    margin-bottom: 0.5em;
-    margin-top: 0.5em;
+.info_text > p{
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
 }
 
-.info_text >h3,h2{
-    margin-bottom:0.5em;
-    margin-top: 1em;
+.info_text > h3,h2{
+    margin-bottom:0.5rem;
+    margin-top: 1rem;
 }
 

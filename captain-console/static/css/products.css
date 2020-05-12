@@ -181,10 +181,21 @@ main {
     justify-content: center;
 }
 
-.product-single .buttons form {
+.product-single form {
+    display: flex;
+    padding: 0;
+}
+
+.product-single form button {
     width: 100%;
-    max-width: 18rem;
-    margin: 0 .5rem;
+    background: none;
+}
+
+.product-single form input {
+    background: white;
+    padding-left: .5rem;
+    width: 3rem;
+    border-left: 1px solid #999999;
 }
 
 .product-single .btn {

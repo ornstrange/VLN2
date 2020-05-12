@@ -1,6 +1,6 @@
 from django.contrib import admin
-from . import models
+from user.models import Customer, Search
 
-admin.site.register(models.Customer)
-admin.site.register(models.Search)
+admin.site.register(Customer)
+admin.site.register(Search)
 

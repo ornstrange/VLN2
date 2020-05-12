@@ -8,6 +8,10 @@ function kill_modal(e) {
     body.classList = "";
 }
 
-msg_container.addEventListener('click', kill_modal);
-msg.addEventListener('click', kill_modal);
+if (msg_container !== null) {
+    msg_container.addEventListener('click', kill_modal);
+}
+if (msg !== null) {
+    msg.addEventListener('click', kill_modal);
+}
 
