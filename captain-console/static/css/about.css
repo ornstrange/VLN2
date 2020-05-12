@@ -1,0 +1,21 @@
+.info_text{
+    width: 60vw;
+    margin:auto;
+    line-height: 2em;
+}
+
+.infolist{
+    width: 50vw;
+    margin:auto;
+}
+
+.info_text >p{
+    margin-bottom: 0.5em;
+    margin-top: 0.5em;
+}
+
+.info_text >h3,h2{
+    margin-bottom:0.5em;
+    margin-top: 1em;
+}
+
