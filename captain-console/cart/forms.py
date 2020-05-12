@@ -9,7 +9,7 @@ class Contact_info_form(forms.Form):
     last_name = forms.CharField(max_length=64,
                                 label='Last name',
                                 required=True)
-    country = CountryField(blank_label='Select country')
+    country = CountryField(blank_label='Select country').formfield()
     street = forms.CharField(max_length=128,
                              label='Street name',
                              required=True)

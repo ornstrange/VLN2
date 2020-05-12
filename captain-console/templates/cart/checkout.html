@@ -3,7 +3,11 @@
     <h3>Checkout</h3>
     <form action="{% url 'checkout' %}" method="POST">
         {% csrf_token %}
-        {{ form.as_ul }}
-        <button type="submit">Go!</button>
+        <ul class="basic-form">
+            {{ form.as_ul }}
+            <li>
+                <button class="btn" type="submit">Go!</button>
+            </li>
+        </ul>
     </form>
 {% endblock %}
