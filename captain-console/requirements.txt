@@ -5,4 +5,3 @@ pytz==2020.1
 sqlparse==0.3.1
 Pillow==7.1.2
 django-countries==6.1.2
-django-credit-cards==0.4.1

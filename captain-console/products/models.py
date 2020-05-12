@@ -16,7 +16,7 @@ class Product(models.Model):
     @property
     def short_desc(self):
         if len(self.description) > 260:
-            return " ".join(self.description.split()[:49]) + "..."
+            return " ".join(self.description.split()[:39]) + "..."
         return self.description
 
     @property
