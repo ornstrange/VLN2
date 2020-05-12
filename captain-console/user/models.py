@@ -14,6 +14,7 @@ class Customer(models.Model):
     active_cart = models.ForeignKey(Cart,
                                   null=True,
                                   on_delete=models.SET_NULL)
+    
 
 @receiver(post_save, sender='auth.User')
 def create_customer(sender, instance, created, **kwargs):

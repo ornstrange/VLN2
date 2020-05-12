@@ -37,11 +37,12 @@ def profile_view(request):
     return render(request, "user/profile.html")
 
 def edit_profile(request):
+    user = request.user
     if request.method == "POST":
-        print("ID: ", str(Customer.user_id))
+        print("ID: ", Customer.user_id)
         form = forms.EditProfileForm(request.POST, files=request.FILES, instance=request.user)
         if form.is_valid():
-            avatar = Customer.objects.get(user_id = User.id)
+            avatar = Customer.objects.get(user_id = user.id)
             avatar.avatar = request.FILES['avatar']
             avatar.save()
             form.save()
