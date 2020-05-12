@@ -1,6 +1,5 @@
 from django import forms
 from django_countries.fields import CountryField
-from creditcards.models import CardNumberField, CardExpiryField
 from cart.models import Contact_info, Payment_info, Order
 
 class Contact_info_form(forms.Form):
