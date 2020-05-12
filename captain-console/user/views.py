@@ -1,6 +1,7 @@
+import os
 from django.shortcuts import render, redirect
 from django.contrib.auth.hashers import make_password, check_password
-from user.models import User
+from user.models import User, Customer
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.forms import AuthenticationForm
@@ -37,13 +38,17 @@ def profile_view(request):
 
 def edit_profile(request):
     if request.method == "POST":
-        form = EditProfileForm(request.POST, isinstance=request.user)
-
-    if form.is_valid():
-        form.save()
-        return redirect('home')
-    else:
-        form = EditProfileForm(isinstance=request.user)
-        args = {'form': form}
-        return render(request, "user/profile.html",args)
+        print("ID: ", str(Customer.user_id))
+        form = forms.EditProfileForm(request.POST, files=request.FILES, instance=request.user)
+        if form.is_valid():
+            avatar = Customer.objects.get(user_id = User.id)
+            avatar.avatar = request.FILES['avatar']
+            avatar.save()
+            form.save()
+            return redirect('profile')
+        else:
+            print("Not valid")
+    return render(request, "user/edit.html", {
+        "form": forms.EditProfileForm()
+    })
 

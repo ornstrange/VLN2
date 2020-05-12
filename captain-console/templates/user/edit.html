@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>Edit profile</h1>
+    <form class="site-form" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form }}
+        <input type = "submit" class="btn btn primary" value="submit">
+    </form>
+{% endblock %}
