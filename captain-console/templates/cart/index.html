@@ -1,45 +1,61 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load humanize %}
 {% block content %}
-    <link rel="stylesheet" href="{% static 'css/cart.css' %}">
     <div class="cart-container">
         {% if cart %}
         <h3 class="cart-title">Your cart</h3>
         {% for item in cart_items %}
-        <form class="cart-item" method="post">
-            {% csrf_token %}
-            <button class="remove" name="remove" value="{{ item.id }}">
-                <img src="{% static 'img/delete.svg' %}" alt="delete">
-            </button>
-            <img class="image"
-                 src="{% static 'img/products/'|add:item.product.thumbimg %}"
-                 alt="{{ item.product.name }}">
+        <div class="cart-item">
+            <form class="cart-button" action="{% url 'delete_item' %}" method="post">
+                {% csrf_token %}
+                <button type="submit" name="id" value="{{ item.id }}">
+                    <img src="{% static 'img/delete.svg' %}" alt="delete">
+                </button>
+            </form>
+            <div class="image">
+                <img src="{% static 'img/products/'|add:item.product.thumbimg %}"
+                     alt="{{ item.product.name }}">
+            </div>
             <div class="description">
                 <p>
-                    {{ item.product.name }}
+                    {{ item.product.short_name }}
                 </p>
                 <p class="category">
+                    {% if item.product.game_type %}
+                    {{ item.product.game_type }}
+                    {% else %}
                     {{ item.product.category }}
+                    {% endif %}
                 </p>
             </div>
-            <div class="quantity">
-                <button type="button">
-                    <img src="{% static 'img/subtract.svg' %}" alt="subtract">
-                </button>
-                <input type="text" value={{ item.quantity }} readonly></input>
-                <button type="button">
-                    <img src="{% static 'img/add.svg' %}" alt="add">
-                </button>
-            </div>
             <p class="single-price">
-                {{ item.product.price }} kr.
+                {{ item.product.price|intcomma }} kr.
             </p>
+            <div class="quantity">
+                <form class="cart-button" action="{% url 'dec_quantity' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" name="id" value="{{ item.id }}">
+                        <img src="{% static 'img/subtract.svg' %}" alt="subtract">
+                    </button>
+                </form>
+                <p>{{ item.quantity }}</p>
+                <form class="cart-button" action="{% url 'add_quantity' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" name="id" value="{{ item.id }}">
+                        <img src="{% static 'img/add.svg' %}" alt="subtract">
+                    </button>
+                </form>
+            </div>
             <p class="total-price">
-                {{ item.total_price }} kr.
+                {{ item.total_price|intcomma }} kr.
             </p>
-        </form>
+        </div>
         {% endfor %}
-        <p class="price">{{ cart.total_price }}</p>
+        <div class="cart-item">
+            <h5 class="cart-total">{{ cart.total_price|intcomma }} kr.</h5>
+            <a class="checkout btn" href="{% url 'checkout' %}"><h5>Checkout</h5></a>
+        </div>
         {% else %}
         <h3>
             Your cart seems to be empty.<br>

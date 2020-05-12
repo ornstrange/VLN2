@@ -44,5 +44,6 @@ def edit_profile(request):
         return redirect('home')
     else:
         form = EditProfileForm(isinstance=request.user)
-        args = {'form':form}
+        args = {'form': form}
         return render(request, "user/profile.html",args)
+

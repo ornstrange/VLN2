@@ -9,13 +9,38 @@
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
     <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
     <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+    {% if style %}
+    <link rel="stylesheet" href="{% static 'css/'|add:style %}">
+    {% endif %}
 </head>
-<body>
+<body {% if messages %}class="disable-scroll"{% endif %}>
+	{% if messages %}
+    <div class="messages-container" id="messages_container">
+        <div class="messages" id="messages">
+            {% for message in messages %}
+            <h5{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                {{ message }}
+            </h5>
+            {% endfor %}
+            <p>Click anywhere to close this.</p>
+        </div>
+    </div>
+	{% endif %}
+
     {% include 'navbar.html' %}
+
     <div class="container">
         {% block content %}
         {% endblock %}
     </div>
+
     {% include 'footer.html' %}
+
+    <!-- JAVASCRIPT -->
+    <script src="{% static 'js/messages.js' %}"></script>
+    <script src="{% static 'js/navbar.js' %}"></script>
+    {% if script %}
+    <script src="{% static 'js/'|add:script %}"></script>
+    {% endif %}
 </body>
 </html>

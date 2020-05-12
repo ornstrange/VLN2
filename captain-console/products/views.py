@@ -79,7 +79,9 @@ def products(request, prods=None):
         'products': paged_prods,
         'keyword_opts': keyword_opts,
         'active_filter': active_filter,
-        'per_page': per_page
+        'per_page': per_page,
+        'script': 'products.js',
+        'style': 'products.css'
     }
     return render(request, 'products/index.html', context)
 
@@ -88,7 +90,8 @@ def product(request, id):
     prev = request.META.get('HTTP_REFERER')
     context = {
         'prod': prod,
-        'prev': prev
+        'prev': prev,
+        'style': 'products.css'
     }
     return render(request, 'products/product.html', context)
 

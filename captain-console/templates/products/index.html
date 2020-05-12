@@ -2,7 +2,6 @@
 {% load static %}
 {% load url_manipulation %}
 {% block content %}
-    <link rel="stylesheet" href="{% static 'css/products.css' %}">
     <main>
         <div class="products {% if not products %}no-prods{% endif %}">
             {% if not products %}
@@ -82,5 +81,4 @@
         </div>
         {% endif %}
     </main>
-    <script src="{% static 'js/products.js' %}"></script>
 {% endblock %}

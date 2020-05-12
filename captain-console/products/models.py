@@ -20,6 +20,19 @@ class Product(models.Model):
         return self.description
 
     @property
+    def short_name(self):
+        if " - " in self.name:
+            return self.name[:self.name.find(" - ")]
+        else:
+            return self.name
+
+    def game_type(self):
+        if self.short_name != self.name:
+            return self.name[self.name.find(" - ") + 3:]
+        else:
+            return ""
+
+    @property
     def thumbimg(self):
         return self.imglist[0]
 
