@@ -117,8 +117,7 @@ body {
 
 /* Home page */
 .landing-description {
-    margin: 0 auto;
-    max-width: 60rem;
+    text-align: center;
 }
 
 .daily-title {
