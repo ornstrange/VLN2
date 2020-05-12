@@ -108,6 +108,7 @@ main {
 .product .hover-info {
     padding: 1rem;
     display: none;
+    line-height: 1.5rem;
 }
 
 /* pagination */
@@ -143,6 +144,7 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
 }
 
 .product-single > * {
@@ -155,6 +157,7 @@ main {
     border-bottom: 1px solid #999999;
     background: #f2f2f2;
     padding: 1rem;
+    line-height: 1.5rem;
 }
 
 .product-single .images {
