@@ -3,6 +3,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate
 from user.forms import SignupForm, EditProfileForm
 from user.models import User, Customer, Search
+from django.contrib import messages
 
 def register(request):
     if request.method == "POST":
@@ -27,6 +28,9 @@ def login_view(request):
             user = form.get_user()
             login(request, user)
             return redirect('profile')
+        else:
+            messages.error(request, f"Login failed!")
+            messages.error(request, f"Please enter username and password correctly")
     context = {
         'form': AuthenticationForm(),
         'style': 'user.css',
