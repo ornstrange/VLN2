@@ -1,4 +1,5 @@
 import os
+from . import forms
 from django.shortcuts import render, redirect
 from django.contrib.auth.hashers import make_password, check_password
 from user.models import User, Customer
@@ -60,7 +61,7 @@ def edit_profile(request):
             if request.FILES:
                 try:
                     os.remove("media/"+str(avatar.avatar))
-                except FileNotFoundError:
+                except:
                     pass
                 try:
                     avatar.avatar = request.FILES['avatar']

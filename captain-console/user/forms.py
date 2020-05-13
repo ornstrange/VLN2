@@ -3,11 +3,8 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
 from user.models import Customer
-<<<<<<< HEAD
 from django.shortcuts import render, redirect
-=======
 from django.core.exceptions import ValidationError
->>>>>>> d6c8b509aeb4539980d59314e3043f935c262932
 
 class SignupForm(UserCreationForm):
     error_messages = {
@@ -41,7 +38,6 @@ class EditProfileForm(UserChangeForm):
     avatar = forms.ImageField(required=False,
                               help_text="Optional.")
     password = None
-
 
     class Meta:
         model = User
