@@ -7,8 +7,7 @@ from cart.models import Cart
 class Customer(models.Model):
     user = models.OneToOneField(User,
                                 on_delete=models.CASCADE)
-    avatar = models.ImageField(upload_to='media',
-                               null=True)
+    avatar = models.ImageField(null=True)
     last_search = models.ForeignKey('Search',
                                     null=True,
                                     on_delete=models.SET_NULL)

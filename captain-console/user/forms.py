@@ -3,6 +3,7 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
 from user.models import Customer
+from django.shortcuts import render, redirect
 
 class SignupForm(UserCreationForm):
     first_name = forms.CharField(max_length=64,
@@ -23,8 +24,11 @@ class SignupForm(UserCreationForm):
 class EditProfileForm(UserChangeForm):
     avatar = forms.ImageField(required=False,
                               help_text="Optional.")
+    password = None
+
 
     class Meta:
         model = User
-        fields = ('first_name', 'last_name', 'email')
-
+        fields = ('first_name', 'last_name', 'email')                    
+        exclude = ('password',)
+        
