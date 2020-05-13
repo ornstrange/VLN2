@@ -47,7 +47,10 @@ def games(request):
 
 def new_search(user, prods, search_term):
     if len(prods) > 0 and user.is_authenticated:
-        if user.customer.last_search.search_term != search_term:
+        if not user.customer.last_search:
+            return Search(user=user.customer,
+                          search_term=search_term)
+        elif user.customer.last_search.search_term != search_term:
             return Search(user=user.customer,
                           search_term=search_term)
     return False
