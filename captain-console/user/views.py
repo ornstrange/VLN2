@@ -6,7 +6,9 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate
-from . import forms
+from user.forms import SignupForm, EditProfileForm
+from user.models import User, Customer, Search
+from django.contrib import messages
 
 def register(request):
     if request.method == "POST":
@@ -18,9 +20,13 @@ def register(request):
             user = authenticate(username=username, password=raw_password)
             login(request, user)
             return redirect('home')
-    return render(request, "user/register.html", {
-        "form": forms.SignupForm()
-    })
+        else:
+            messages.error(request, f"Please enter both passwords correctly")
+    context = {
+        'form': SignupForm(),
+        'style': 'user.css'
+    }
+    return render(request, 'user/register.html', context)
 
 def login_view(request):
     if request.method == "POST":
@@ -28,10 +34,15 @@ def login_view(request):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            return redirect("home")
-    return render(request, "user/login.html", {
-        "form": AuthenticationForm()
-    })
+            return redirect('profile')
+        else:
+            messages.error(request, f"Login failed!")
+            messages.error(request, f"Please enter username and password correctly")
+    context = {
+        'form': AuthenticationForm(),
+        'style': 'user.css',
+    }
+    return render(request, 'user/login.html', context)
 
 def profile_view(request):
     return render(request, "user/profile.html")
@@ -70,11 +81,15 @@ def edit_profile(request):
         "form": forms.EditProfileForm()
     })
 def searches(request):
-    customer = request.user.customer
-    searches = Search.objects.filter(customer=customer)
+    searches = Search.objects.filter(user=request.user.customer)
     context = {
-        'searches': searches,
+        'searches': searches.order_by('-date'),
         'style': 'user.css'
     }
     return render(request, 'user/searches.html', context)
 
+def forgotten_view(request):
+    context = {
+        'style': 'user.css'
+    }
+    return render(request, 'user/forgotten.html', context)

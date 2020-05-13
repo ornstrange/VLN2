@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.urls import reverse
 from cart.models import Cart
 
 class Customer(models.Model):
@@ -32,6 +33,13 @@ class Search(models.Model):
     search_term = models.CharField(max_length=256)
     date = models.DateTimeField(auto_now=True)
 
+    @property
+    def pretty_date(self):
+        return self.date.strftime('%d/%m/%y - %H:%M:%S')
+
     def __str__(self):
         return f"{self.user.user} searched: {self.search_term}"
+
+    def get_absolute_url(self):
+        return reverse('search') + f'?search={self.search_term}'
 

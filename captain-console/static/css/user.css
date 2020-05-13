@@ -3,8 +3,56 @@
 }
 
 .view-profile img {
+    border-radius: 50%;
     width: auto;
     align-self: center;
     max-width: 24rem;
     max-height: 24rem;
+}
+
+.searches {
+    max-width: 32rem;
+    margin-top: 1rem;
+    border: 1px solid #999999;
+}
+
+.search-item {
+    border: none;
+    padding: 0 .5rem;
+    display: flex;
+}
+
+.search-item:first-child {
+    border-bottom: 1px solid #999999;
+    font-weight: bold;
+}
+.search-item:first-child p {
+    text-align: center;
+}
+
+.search-item:nth-child(even) {
+    background: #f2f2f2;
+}
+
+.search-item:first-child:hover {
+    background: none;
+}
+
+.search-item:hover {
+    background: #dadada;
+}
+
+.search-item p:first-child {
+    border-right: 1px solid #999999;
+    width: 100%;
+}
+
+.search-item p:last-child {
+    width: 20rem;
+    text-align: center;
+}
+
+.search-item p {
+    padding: .25rem 0;
+    text-align: left;
 }
