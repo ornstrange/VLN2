@@ -1,6 +1,7 @@
 from django.contrib.postgres.search import SearchVector, SearchQuery
+from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
-from django.shortcuts import render
+from django.contrib import messages
 from user.models import Search
 from products.models import Product
 
@@ -86,6 +87,9 @@ def products(request, prods=None):
     return render(request, 'products/index.html', context)
 
 def product(request, id):
+    if request.method == "POST":
+        messages.error(request, "You have to be logged in to add to your cart.")
+        return redirect('login')
     prod = Product.objects.get(pk=id)
     prev = request.META.get('HTTP_REFERER')
     context = {

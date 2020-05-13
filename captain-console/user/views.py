@@ -28,10 +28,10 @@ def login_view(request):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            return redirect("home")
+            return redirect('profile')
     context = {
         'form': AuthenticationForm(),
-        'style': 'user.css'
+        'style': 'user.css',
     }
     return render(request, 'user/login.html', context)
 

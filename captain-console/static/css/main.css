@@ -96,7 +96,7 @@ body {
 .messages {
     width: 100%;
     height: 100%;
-    max-width: 40vw;
+    max-width: 42vw;
     max-height: 24.7vh;
     background: white;
     display: flex;

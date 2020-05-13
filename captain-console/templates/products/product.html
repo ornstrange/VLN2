@@ -11,7 +11,13 @@
         <h3>{{ prod.price }} kr.</h3>
         <p class="desc">{{ prod.description }}</p>
         <div class="buttons">
-            <form class="btn" action="{% url 'add_item' %}" method="post">
+            <form class="btn"
+                {% if user.is_authenticated %}
+                action="{% url 'add_item' %}"
+                {% else %}
+                action="#"
+                {% endif %}
+                method="POST">
                 {% csrf_token %}
                 <button type="submit" name="id" value="{{ prod.id }}">
                     Add to cart

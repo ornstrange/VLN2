@@ -7,10 +7,17 @@ from cart.models import Contact_info, Payment_info, Order
 def valid_card_num(value):
     if len(value) == 19:
         value = value.replace('-', '')
-    if not (len(value) == 16 and value.isnumeric()):
+    if len(value) != 16 or not value.isnumeric():
         raise ValidationError(
             _(f'{value} is not a valid card number'),
             params={'value': value})
+
+def valid_ccv(value):
+    if len(value) != 3 or not value.isnumeric():
+        raise ValidationError(
+            -(f'{value} is not a valid ccv number'),
+            params={'value': value}
+        )
 
 class Contact_info_form(forms.ModelForm):
     first_name = forms.CharField(max_length=64,
@@ -45,7 +52,8 @@ class Payment_info_form(forms.ModelForm):
                                   validators=[valid_card_num])
     ccv = forms.CharField(max_length=3,
                           required=True,
-                          label='Secret code (ccv)')
+                          label='Secret code (ccv)',
+                          validators=[valid_ccv])
     expiration = forms.DateField(required=True,
                                  label='Expiration date',
                                  input_formats=['%m/%y', '%m/%Y'])
