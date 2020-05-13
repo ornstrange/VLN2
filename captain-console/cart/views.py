@@ -184,7 +184,6 @@ def checkout_confirm(request, oid=None):
                 return redirect('cart')
         context = {
             'order': order,
-            'contact_info': order.contact,
             'cart': request.user.customer.active_cart,
             'style': 'checkout.css'
         }

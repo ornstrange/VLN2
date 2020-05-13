@@ -1,0 +1,71 @@
+.checkout-form {
+    max-width: 32rem;
+    background: #f2f2f2;
+    border: 1px solid #999999;
+    padding: 1rem 1rem;
+    margin-top: 1rem;
+}
+
+.checkout-form .steps {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.checkout-form .steps > * {
+    width: calc(50% - .5rem);
+    height: 2rem;
+    padding: 0;
+    line-height: 2rem;
+}
+
+.checkout-form .steps p {
+    width: 100%;
+    margin-top: .5rem;
+    text-align: center;
+}
+
+.review-container {
+    margin: 0 auto;
+    max-width: 48rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.review-container h5 {
+    background: white;
+    height: 2.5rem;
+    line-height: 2.5rem;
+    border-bottom: 1px solid #999999;
+    margin-bottom: .5rem;
+}
+
+.review-container .contact, .review-container .payment {
+    width: calc(50% - .5rem);
+}
+
+.review-container .info {
+    margin-bottom: .5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.review-container .info p {
+    padding: 0 .25rem;
+}
+
+.review-container .info .line {
+    height: 2px;
+    flex-grow: 1;
+    border-bottom: 1px solid #999999;
+}
+
+.review-container .total, .review-container .cart {
+    width: 100%;
+    margin: 1rem 0;
+}
+

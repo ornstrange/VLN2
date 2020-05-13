@@ -3,9 +3,9 @@
     <h3>Profile</h3>
     <div class="basic-form view-profile">
         {% if user.customer.avatar %}
-            <img src="{{ user.customer.avatar.url }}" height="350">
-        {% else %}
-            <img src="/media/default.jpg" height="350">
+            <div class="img-container">
+                <img src="{{ user.customer.avatar.url }}">
+            </div>
         {% endif %}
         <p>Username: {{ user }}</p>
         <p>First name: {{ user.first_name }}</p>

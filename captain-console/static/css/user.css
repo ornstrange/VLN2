@@ -2,14 +2,20 @@
     margin-top: 1rem;
 }
 
-.view-profile img {
-    border-radius: 50%;
-    width: auto;
+.view-profile .img-container {
     align-self: center;
-    max-width: 24rem;
+    width: 24rem;
     max-height: 24rem;
+    overflow: hidden;
+    border-radius: 50%;
+    border: 1px solid black;
 }
 
+.view-profile .img-container img {
+    width: 100%;
+}
+
+/* Search history */
 .searches {
     max-width: 32rem;
     margin-top: 1rem;

@@ -1,21 +1,24 @@
 {% extends 'base.html' %}
 {% load humanize %}
 {% block content %}
-    <h3>Checkout</h3>
-    <h5>Review</h5>
-    <div class="review-container">
+    <h3>Review information</h3>
+    <div class="checkout-form review-container">
         <div class="contact">
             <h5>Contact information</h5>
             {% for name, info in contact_info.pretty_values.items %}
+            <div class="info">
                 <p>{{ name }}</p>
                 <p>{{ info }}</p>
+            </div>
             {% endfor %}
         </div>
         <div class="payment">
             <h5>Payment information</h5>
             {% for name, info in payment_info.pretty_values.items %}
+            <div class="info">
                 <p>{{ name }}</p>
                 <p>{{ info }}</p>
+            </div>
             {% endfor %}
         </div>
         <div class="total">
@@ -24,16 +27,16 @@
             </h5>
         </div>
         <form action="#" class="steps" method="POST">
-            {% csrf_token %}
             <a class="btn"
                 href="{% url 'checkout_payment' cid=contact_info.id %}">
                 Go back
             </a>
-            <p class="step-num">3 / 4</p>
             <button class="btn" type="submit"
                 name="create_order" value="true">
-                Proceed to pay
+                Proceed
             </button>
+            <p class="step-num">3 / 4</p>
+            {% csrf_token %}
         </form>
     </div>
 {% endblock %}

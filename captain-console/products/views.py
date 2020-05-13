@@ -45,6 +45,13 @@ def games(request):
     prods = Product.objects.filter(category="Game")
     return products(request, prods)
 
+def new_search(user, prods, search_term):
+    if len(prods) > 0 and user.is_authenticated:
+        if user.customer.last_search.search_term != search_term:
+            return Search(user=user.customer,
+                          search_term=search_term)
+    return False
+
 def products(request, prods=None):
     # all products
     if not prods:
@@ -54,9 +61,7 @@ def products(request, prods=None):
         prods = search(prods, search_term, ('name', 'description',
                                             'keywords', 'condition'))
         # add Search object to user if relevant
-        if len(prods) > 0 and request.user.is_authenticated:
-            search_obj = Search(user=request.user.customer,
-                                search_term=search_term)
+        if search_obj := new_search(request.user, prods, search_term):
             request.user.customer.last_search = search_obj
             search_obj.save()
             request.user.save()

@@ -3,12 +3,15 @@
 {% block content %}
     <h3>Checkout</h3>
     <h5>Review</h5>
-    <div class="review-container">
+    <div class="checkout-form review-container">
         <div class="cart">
-            <h5>Contact information</h5>
+            <h5>Cart items</h5>
             {% for item in cart.all_items %}
+            <div class="info">
                 <p>{{ item.product.name }}</p>
-                <p>{{ item.total_price }}</p>
+                <div class="line"></div>
+                <p><b>{{ item.total_price|intcomma }} kr.</b></p>
+            </div>
             {% endfor %}
         </div>
         <div class="total">
@@ -19,13 +22,13 @@
         <form action="#" method="POST" class="steps">
             {% csrf_token %}
             <a class="btn"
-                href="{% url 'checkout_payment' cid=contact_info.id %}">
+                href="{% url 'checkout_review' pid=order.payment.id cid=order.contact.id %}">
                 Go back
             </a>
-            <p class="step-num">4 / 4</p>
             <button name="pay" value="pay" class="btn" type="submit">
                 Pay
             </button>
+            <p class="step-num">4 / 4</p>
         </form>
     </div>
 {% endblock %}

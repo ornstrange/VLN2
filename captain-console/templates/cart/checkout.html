@@ -1,21 +1,18 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h3>Checkout</h3>
-    <h5>Contact information</h5>
-    <form action="#" method="POST">
+    <h3>Contact information</h3>
+    <form class="basic-form checkout-form" action="#" method="POST">
         {% csrf_token %}
-        <ul class="basic-form">
-            {{ form.as_ul }}
-            <li class="steps">
-                <a class="btn"
-                    href="{% url 'cart' %}">
-                    Go back
-                </a>
-                <p class="step-num">1 / 4</p>
-                <button class="btn" type="submit">
-                    Continue to card information
-                </button>
-            </li>
-        </ul>
+        {{ form.as_ul }}
+        <li class="steps">
+            <a class="btn"
+                href="{% url 'cart' %}">
+                Go back
+            </a>
+            <button class="btn" type="submit">
+                Continue
+            </button>
+            <p class="step-num">1 / 4</p>
+        </li>
     </form>
 {% endblock %}
