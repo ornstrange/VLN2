@@ -1,8 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
     <h3>Password</h3>
+    <form class="basic-form" action="#" method="POST"></form>
+        {% csrf_token %}
+        {{ form.as_ul }}
+
+        <li>
+            <button class="btn" type="submit">Save changes</button>
+        </li>
     
-    {% csrf_token %}
-    
+    </form>
 
 {% endblock %}
