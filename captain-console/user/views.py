@@ -65,10 +65,9 @@ def edit_profile(request):
     return render(request, 'user/edit.html', context)
 
 def searches(request):
-    customer = request.user.customer
-    searches = Search.objects.filter(customer=customer)
+    searches = Search.objects.filter(user=request.user.customer)
     context = {
-        'searches': searches,
+        'searches': searches.order_by('-date'),
         'style': 'user.css'
     }
     return render(request, 'user/searches.html', context)

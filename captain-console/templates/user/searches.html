@@ -1,9 +1,16 @@
 {% extends 'base.html' %}
 {% block content %}
     <h3>Search history</h3>
-    <div class="basic-form">
+    <div class="basic-form searches">
+        <div class="search-item">
+            <p>Searched for</p>
+            <p>Date</p>
+        </div>
         {% for search in searches %}
-        <p>Search: {{ search }}</p>
+        <a class="search-item btn" href="{{ search.get_absolute_url }}">
+            <p>{{ search.search_term }}</p>
+            <p>{{ search.pretty_date }}</p>
+        </a>
         {% endfor %}
     </div>
 {% endblock %}
