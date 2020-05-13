@@ -1,0 +1,22 @@
+.img{
+
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 10%;
+    border-radius: 50%;
+}
+.profile_info{
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.edit_profile {
+    text-align: center; 
+    padding: .25em 1rem;
+    border: 1px solid #999999;
+}
+
+.edit_profile:hover {
+    background: #f2f2f2;
+}

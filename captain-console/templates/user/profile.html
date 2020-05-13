@@ -1,12 +1,18 @@
 {% extends 'base.html' %}
 {% block content %}
     <h3>Profile</h3>
+    
     {% if user.customer.avatar %}
-    <img src="{{ user.customer.avatar.url }}" width="200">
+    <img class="img" src="{{ user.customer.avatar.url }}" width="200">
     {% endif %}
+    <div class="profile_info">
     <p>Username: {{ user }}</p>
     <p>First name: {{ user.first_name }}</p>
     <p>Last name: {{ user.last_name }}</p>
     <p>Email: {{ user.email }}</p>
-    <a href="edit/">Edit profile</a>
+    </div>
+    <button class="btn"><a href="{% url 'edit' %}">Edit profile</a></button>
+    
+    
+    
 {% endblock %}
