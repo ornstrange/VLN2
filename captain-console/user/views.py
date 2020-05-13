@@ -73,6 +73,7 @@ def searches(request):
     return render(request, 'user/searches.html', context)
 
 def forgotten_view(request):
+    
     context = {
         'style': 'user.css'
     }
