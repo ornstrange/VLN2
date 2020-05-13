@@ -1,0 +1,10 @@
+.view-profile > * {
+    margin-top: 1rem;
+}
+
+.view-profile img {
+    width: auto;
+    align-self: center;
+    max-width: 24rem;
+    max-height: 24rem;
+}

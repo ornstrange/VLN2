@@ -27,7 +27,13 @@
             {% endif %}
                 <div class="dropdown-content">
                 {% for name in item.1 %}
+                    {% if name|typeof == 'dict' %}
+                    {% for k, v in name.items %}
+                    <a class="nav-link" href="{% url v %}">{{ k }}</a>
+                    {% endfor %}
+                    {% else %}
                     <a class="nav-link" href="{% url name %}">{{ name|capfirst }}</a>
+                    {% endif %}
                 {% endfor %}
                 </div>
             </div>

@@ -1,10 +1,8 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate
-from user.models import User, Customer
 from user.forms import SignupForm, EditProfileForm
+from user.models import User, Customer, Search
 
 def register(request):
     if request.method == "POST":
@@ -48,9 +46,10 @@ def edit_profile(request):
                                files=request.FILES,
                                instance=request.user)
         if form.is_valid():
-            avatar = Customer.objects.get(user_id = user.id)
-            avatar.avatar = request.FILES['avatar']
-            avatar.save()
+            customer = Customer.objects.get(user_id = user.id)
+            if request.FILES['avatar']:
+                customer.avatar = request.FILES['avatar']
+                customer.save()
             form.save()
             return redirect('profile')
     context = {
@@ -58,4 +57,13 @@ def edit_profile(request):
         'style': 'user.css'
     }
     return render(request, 'user/edit.html', context)
+
+def searches(request):
+    customer = request.user.customer
+    searches = Search.objects.filter(customer=customer)
+    context = {
+        'searches': searches,
+        'style': 'user.css'
+    }
+    return render(request, 'user/searches.html', context)
 

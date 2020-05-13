@@ -23,11 +23,8 @@ class SignupForm(UserCreationForm):
 class EditProfileForm(UserChangeForm):
     avatar = forms.ImageField(required=False,
                               help_text="Optional.")
-    model = Customer
-    fields = ("avatar",)
 
     class Meta:
         model = User
         fields = ('first_name', 'last_name', 'email')
-
 

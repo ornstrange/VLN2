@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h3>Search history</h3>
+    <div class="basic-form">
+        {% for search in searches %}
+        <p>Search: {{ search }}</p>
+        {% endfor %}
+    </div>
+{% endblock %}
