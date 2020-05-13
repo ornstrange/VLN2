@@ -13,6 +13,9 @@ class Cart(models.Model):
     status = models.CharField(max_length=32)
     created = models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        return f"{self.id}: {self.status}, {self.user.username}'s cart."
+
     @property
     def total_price(self):
         items = Cart_item.objects.filter(cart=self)
@@ -25,6 +28,10 @@ class Cart(models.Model):
         else:
             return None
 
+    @property
+    def all_items(self):
+        return Cart_item.objects.filter(cart=self)
+
 class Cart_item(models.Model):
     product = models.ForeignKey(Product,
                                 null=True,
@@ -32,6 +39,9 @@ class Cart_item(models.Model):
     quantity = models.IntegerField(default=1)
     cart = models.ForeignKey('Cart',
                              on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.id}: {self.quantity} x {self.product.name}"
 
     @property
     def total_price(self):
@@ -48,15 +58,40 @@ class Contact_info(models.Model):
     last_name = models.CharField(max_length=64)
     first_name = models.CharField(max_length=64)
     country = CountryField()
-    street = models.CharField(max_length=128)
+    address = models.CharField(max_length=128)
     city = models.CharField(max_length=128)
-    house_nr = models.IntegerField()
     postcode = models.CharField(max_length=10)
+
+    def __str__(self):
+        return ", ".join([self.last_name, self.first_name,
+                          self.country.name, self.address,
+                          self.city, self.postcode])
+
+    @property
+    def pretty_values(self):
+        return {
+            'Full name': f"{self.first_name} {self.last_name}",
+            'Country': self.country.name,
+            'Address': f"{self.postcode}, {self.city}, {self.address}"
+        }
 
 class Payment_info(models.Model):
     last_four = models.CharField(max_length=4)
-    expiration = models.CharField(max_length=7)
+    expiration = models.DateField()
     cardholder = models.CharField(max_length=128)
+
+    def __str__(self):
+        return ", ".join([self.cardholder,
+                          self.expiration.strftime('%m/%y'),
+                          self.last_four])
+
+    @property
+    def pretty_values(self):
+        return {
+            'Cardholder': self.cardholder,
+            'Expiration Date': self.expiration.strftime('%m/%y'),
+            'Card Number': f"**** **** **** {self.last_four}"
+        }
 
 class Order(models.Model):
     user = models.ForeignKey(User,
@@ -73,4 +108,7 @@ class Order(models.Model):
                                 on_delete=models.SET_NULL)
     status = models.CharField(max_length=32)
     created = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"{self.id}, {self.status}: {self.user}, cart: {self.cart.id}"
 

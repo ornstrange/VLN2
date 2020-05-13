@@ -16,6 +16,9 @@ class Customer(models.Model):
                                   null=True,
                                   on_delete=models.SET_NULL)
 
+    def __str__(self):
+        return self.user.username
+
 
 @receiver(post_save, sender='auth.User')
 def create_customer(sender, instance, created, **kwargs):
@@ -29,4 +32,7 @@ class Search(models.Model):
                              on_delete=models.CASCADE)
     search_term = models.CharField(max_length=256)
     date = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"{self.user.user} searched: {self.search_term}"
 

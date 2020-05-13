@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% block content %}
+    <h3>Checkout</h3>
+    <h5>Review</h5>
+    <div class="review-container">
+        <div class="cart">
+            <h5>Contact information</h5>
+            {% for item in cart.all_items %}
+                <p>{{ item.product.name }}</p>
+                <p>{{ item.total_price }}</p>
+            {% endfor %}
+        </div>
+        <div class="total">
+            <h5>
+                Total {{ cart.total_price|intcomma }} kr.
+            </h5>
+        </div>
+        <form action="#" method="POST" class="steps">
+            {% csrf_token %}
+            <a class="btn"
+                href="{% url 'checkout_payment' cid=contact_info.id %}">
+                Go back
+            </a>
+            <p class="step-num">4 / 4</p>
+            <button name="pay" value="pay" class="btn" type="submit">
+                Pay
+            </button>
+        </form>
+    </div>
+{% endblock %}

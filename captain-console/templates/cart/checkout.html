@@ -1,12 +1,20 @@
 {% extends 'base.html' %}
 {% block content %}
     <h3>Checkout</h3>
-    <form action="{% url 'checkout' %}" method="POST">
+    <h5>Contact information</h5>
+    <form action="#" method="POST">
         {% csrf_token %}
         <ul class="basic-form">
             {{ form.as_ul }}
-            <li>
-                <button class="btn" type="submit">Go!</button>
+            <li class="steps">
+                <a class="btn"
+                    href="{% url 'cart' %}">
+                    Go back
+                </a>
+                <p class="step-num">1 / 4</p>
+                <button class="btn" type="submit">
+                    Continue to card information
+                </button>
             </li>
         </ul>
     </form>

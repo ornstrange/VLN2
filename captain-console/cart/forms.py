@@ -1,8 +1,18 @@
 from django import forms
 from django_countries.fields import CountryField
+from django.core.exceptions import ValidationError
+from django.utils.translation import gettext_lazy as _
 from cart.models import Contact_info, Payment_info, Order
 
-class Contact_info_form(forms.Form):
+def valid_card_num(value):
+    if len(value) == 19:
+        value = value.replace('-', '')
+    if not (len(value) == 16 and value.isnumeric()):
+        raise ValidationError(
+            _(f'{value} is not a valid card number'),
+            params={'value': value})
+
+class Contact_info_form(forms.ModelForm):
     first_name = forms.CharField(max_length=64,
                                  label='First name',
                                  required=True)
@@ -10,31 +20,29 @@ class Contact_info_form(forms.Form):
                                 label='Last name',
                                 required=True)
     country = CountryField(blank_label='Select country').formfield()
-    street = forms.CharField(max_length=128,
-                             label='Street name',
+    address = forms.CharField(max_length=128,
+                             label='Street name and number',
                              required=True)
     city = forms.CharField(max_length=128,
                              label='City name',
                              required=True)
-    house_nr = forms.IntegerField(min_value=1,
-                                  label='House number',
-                                  required=True)
-    city = forms.CharField(max_length=10,
+    postcode = forms.CharField(max_length=10,
                              label='Postcode',
                              required=True)
 
     class Meta:
         model = Contact_info
         fields = ('first_name', 'last_name', 'country',
-                  'street', 'city', 'house_nr', 'postcode')
+                  'address', 'city', 'postcode')
 
-class Payment_info_form(forms.Form):
+class Payment_info_form(forms.ModelForm):
     cardholder = forms.CharField(max_length=128,
                                  required=True,
                                  label='Full cardholder name')
     card_number = forms.CharField(max_length=19,
                                   required=True,
-                                  label='Card Number')
+                                  label='Card Number',
+                                  validators=[valid_card_num])
     ccv = forms.CharField(max_length=3,
                           required=True,
                           label='Secret code (ccv)')
@@ -45,4 +53,11 @@ class Payment_info_form(forms.Form):
     class Meta:
         model = Payment_info
         fields = ('cardholder', 'expiration')
+
+    def save(self, commit=True):
+        payment_info = super().save(commit=False)
+        payment_info.last_four = self.cleaned_data['card_number'][-4:]
+        if commit:
+            payment_info.save()
+        return payment_info
 

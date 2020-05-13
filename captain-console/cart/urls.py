@@ -9,8 +9,8 @@ urlpatterns = [
     path('add_q/', views.add_quantity, name='add_quantity'),
     path('dec_q/', views.dec_quantity, name='dec_quantity'),
     path('checkout/', views.checkout, name='checkout'),
-    path('checkout/payment', views.checkout_payment, name='checkout_payment'),
-    path('checkout/review', views.checkout_review, name='checkout_review'),
-    path('checkout/confirm', views.checkout_confirm, name='checkout_confirm')
+    path('checkout/<int:cid>/', views.checkout_payment, name='checkout_payment'),
+    path('checkout/<int:cid>/<int:pid>/', views.checkout_review, name='checkout_review'),
+    path('checkout/confirm/<int:oid>', views.checkout_confirm, name='checkout_confirm')
 ]
 

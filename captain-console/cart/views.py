@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.http import Http404
 from products.models import Product
 from user.models import Customer
-from cart.models import Cart, Cart_item
+from cart.models import Cart, Cart_item, Contact_info, Payment_info, Order
 from cart.forms import Contact_info_form, Payment_info_form
 
 # Cart
@@ -102,41 +102,92 @@ def checkout(request):
     if request.user.customer.active_cart:
         if request.method == "POST":
             form = Contact_info_form(data=request.POST)
-            if form.is_valid:
-                form.save()
-                print(form)
-                return render(request, 'index.html')
+            if form.is_valid():
+                contact_info = form.save()
+                return redirect('checkout_payment',
+                                cid=contact_info.id)
+            else:
+                messages.error(request, 'Invalid information...')
+                messages.error(request, form.errors)
         context = {
             'form': Contact_info_form(),
-            'style': 'checkout.css'
+            'style': 'checkout.css',
+            'script': 'checkout.js'
         }
         return render(request, 'cart/checkout.html', context)
     else:
         raise Http404()
 
 @login_required
-def checkout_payment(request):
+def checkout_payment(request, cid=None):
     if request.user.customer.active_cart:
-        if request.method == "POST":
-            pass
+        if request.method == "POST" and cid:
+            form = Payment_info_form(data=request.POST)
+            if form.is_valid():
+                payment_info = form.save()
+                contact_info = Contact_info.objects.get(pk=cid)
+                return redirect('checkout_review',
+                                cid=contact_info.id,
+                                pid=payment_info.id)
+            else:
+                messages.error(request, 'Invalid card information...')
+                messages.error(request, form.errors)
         context = {
-            'form': Contact_info_form(),
-            'style': 'checkout.css'
+            'form': Payment_info_form(),
+            'style': 'checkout.css',
+            'script': 'checkout.js'
         }
         return render(request, 'cart/checkout_payment.html', context)
     else:
         raise Http404()
 
 @login_required
-def checkout_review(request):
-    if request.user.customer.active_cart:
+def checkout_review(request, cid=None, pid=None):
+    if request.user.customer.active_cart and cid and pid:
+        contact_info = Contact_info.objects.get(pk=int(cid))
+        payment_info = Payment_info.objects.get(pk=int(pid))
+        if request.method == "POST" and contact_info and payment_info:
+            if request.POST.get('create_order') == 'true':
+                order = Order(
+                    cart=request.user.customer.active_cart,
+                    user=request.user,
+                    contact=contact_info,
+                    payment=payment_info,
+                    status='Unpaid')
+                order.save()
+                return redirect('checkout_confirm',
+                                oid=order.id)
+        context = {
+            'contact_info': contact_info,
+            'payment_info': payment_info,
+            'cart': request.user.customer.active_cart,
+            'style': 'checkout.css'
+        }
         return render(request, 'cart/checkout_review.html', context)
     else:
         raise Http404()
 
 @login_required
-def checkout_confirm(request):
-    if request.user.customer.active_cart:
+def checkout_confirm(request, oid=None):
+    if request.user.customer.active_cart and oid:
+        order = Order.objects.get(pk=int(oid))
+        if request.method == "POST":
+            if request.POST.get('pay') == "pay" and order:
+                order.status = "processing"
+                order.save()
+                order.user.customer.active_cart.status = "stale"
+                order.user.customer.active_cart.save()
+                order.user.customer.active_cart = None
+                order.user.customer.save()
+                messages.info(request, 'Payment successful.')
+                messages.info(request, 'Your order is now processing.')
+                return redirect('cart')
+        context = {
+            'order': order,
+            'contact_info': order.contact,
+            'cart': request.user.customer.active_cart,
+            'style': 'checkout.css'
+        }
         return render(request, 'cart/checkout_confirm.html', context)
     else:
         raise Http404()
