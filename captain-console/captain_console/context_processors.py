@@ -4,9 +4,14 @@ def navigation_links(request):
     # links
     left = ['home', 'games', 'consoles']
     center = ['search']
-    right = [('Information', ('about', 'employees', 'contact'))]
+    right = [('Information', ({'About us': 'about'}, 'employees', 'contact'))]
     if request.user.is_authenticated:
-        right += [(request.user, ('profile', 'logout')), 'cart']
+        if request.user.customer.last_search:
+            sub_menu = ({'Search history': 'search_history'},
+                        {'View profile': 'profile'}, 'logout')
+        else:
+            sub_menu = ({'View profile': 'profile'}, 'logout')
+        right += [(request.user, sub_menu), 'cart']
     else:
         right += ['login']
     return {'navbar_links': [left, center, right]}

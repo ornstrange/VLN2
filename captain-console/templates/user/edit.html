@@ -4,7 +4,9 @@
     <form class="basic-form" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_ul }}
-        <input type="submit" class="btn" value="submit">
+        <li>
+            <input type="submit" class="btn" value="submit">
+        </li>
     </form>
 {% endblock %}
 

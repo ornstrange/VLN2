@@ -3,11 +3,9 @@
     <h3>Register</h3>
     <form class="basic-form" action="#" method="POST">
         {% csrf_token %}
-        <ul class="basic-form">
-            {{ form.as_ul }}
-            <li>
-                <button class="btn" type="submit">Submit</button>
-            </li>
-        </ul>
+        {{ form.as_ul }}
+        <li>
+            <button class="btn" type="submit">Submit</button>
+        </li>
     </form>
 {% endblock %}
