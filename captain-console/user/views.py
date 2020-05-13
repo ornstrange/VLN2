@@ -15,6 +15,8 @@ def register(request):
             user = authenticate(username=username, password=raw_password)
             login(request, user)
             return redirect('home')
+        else:
+            messages.error(request, f"Please enter both passwords correctly")
     context = {
         'form': SignupForm(),
         'style': 'user.css'
@@ -71,3 +73,8 @@ def searches(request):
     }
     return render(request, 'user/searches.html', context)
 
+def forgotten_view(request):
+    context = {
+        'style': 'user.css'
+    }
+    return render(request, 'user/forgotten.html', context)
