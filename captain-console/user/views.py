@@ -97,7 +97,7 @@ def change_password(request):
             messages.success(request, f'Your password was successfully updated!')
             return redirect('profile')
         else:
-            messages.error(request, f'Please correct the error below.')
+            messages.error(request, f'Please enter both passwords correctly.')
     else:
         form = PasswordChangeForm(user=request.user)
         args = {'form': form}
