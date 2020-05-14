@@ -37,6 +37,10 @@
                 {% endfor %}
                 </div>
             </div>
+        {% elif item|typeof == 'dict' %}
+        {% for k, v in item.items %}
+            <a class="nav-link {% active v title %}" href="{% url v %}">{{ k }}</a>
+        {% endfor %}
         {% else %}
             <a class="nav-link {% active item title %}" href="{% url item %}">{{ item|capfirst }}</a>
         {% endif %}

@@ -14,7 +14,7 @@ class Cart(models.Model):
     created = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f"{self.id}: {self.status}, {self.user.username}'s cart."
+        return f"{self.id}: {self.status}, {self.user}'s cart."
 
     @property
     def total_price(self):

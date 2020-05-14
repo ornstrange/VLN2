@@ -19,7 +19,6 @@ class Customer(models.Model):
     def __str__(self):
         return self.user.username
 
-
 @receiver(post_save, sender='auth.User')
 def create_customer(sender, instance, created, **kwargs):
     if created:

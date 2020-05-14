@@ -6,12 +6,16 @@ def navigation_links(request):
     center = ['search']
     right = [('Information', ({'About us': 'about'}, 'employees', 'contact'))]
     if request.user.is_authenticated:
-        if request.user.customer.last_search:
+        customer = request.user.customer
+        if customer.last_search:
             sub_menu = ({'Search history': 'search_history'},
                         {'View profile': 'profile'}, 'logout')
         else:
             sub_menu = ({'View profile': 'profile'}, 'logout')
-        right += [(request.user, sub_menu), 'cart']
+        cart = 'cart'
+        if customer.active_cart:
+            cart = {f'Cart ({len(customer.active_cart.all_items)})': 'cart'}
+        right += [(request.user, sub_menu), cart]
     else:
         right += ['login']
     return {'navbar_links': [left, center, right]}
