@@ -4,11 +4,12 @@
 
 .view-profile .img-container {
     align-self: center;
-    width: 24rem;
-    max-height: 24rem;
+    width: 18rem;
+    max-height: 18rem;
     overflow: hidden;
     border-radius: 50%;
     border: 1px solid black;
+    margin: 1rem 0;
 }
 
 .view-profile .img-container img {

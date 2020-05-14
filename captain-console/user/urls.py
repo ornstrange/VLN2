@@ -13,3 +13,4 @@ urlpatterns = [
     path('profile/search-history/', views.searches, name='search_history'),
     path('forgotten/', views.change_password, name='forgotten')
 ]
+
