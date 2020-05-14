@@ -1,4 +1,6 @@
-from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.views import (
+    LoginView, LogoutView, PasswordResetView, 
+    PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView)
 from django.urls import path
 from . import views
 
@@ -9,5 +11,5 @@ urlpatterns = [
     path('profile/', views.profile_view, name='profile'),
     path('profile/edit/', views.edit_profile, name='edit'),
     path('profile/search-history/', views.searches, name='search_history'),
-    path('forgotten/', views.forgotten_view, name='forgotten')
+    path('forgotten/', views.change_password, name='forgotten')
 ]

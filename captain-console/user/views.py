@@ -89,14 +89,15 @@ def searches(request):
     return render(request, 'user/searches.html', context)
 
 
-def forgotten_view(request):
-    if request.method == 'POST':
+def change_password(request):
+    if request.method == 'GET':
         form = PasswordChangeForm(request.user, request.POST)
         if form.is_valid():
+            print("HELLO")
             user = form.save()
             update_session_auth_hash(request, user)  
             messages.success(request, f'Your password was successfully updated!')
-            return redirect('profile')
+            return redirect('profile.html')
         else:
             messages.error(request, f'Please correct the error below.')
     else:
