@@ -2,11 +2,11 @@
 {% block content %}
     <h3>Profile</h3>
     <div class="basic-form view-profile">
-        {% comment %} {% if user.customer.avatar %} {% endcomment %}
-        {% comment %}     <div class="img-container"> {% endcomment %}
-        {% comment %}         <img src="{{ user.customer.avatar.url }}"> {% endcomment %}
-        {% comment %}     </div> {% endcomment %}
-        {% comment %} {% else %} {% endcomment %}
+        {% if user.customer.avatar %}
+            <div class="img-container">
+                <img src="{{ user.customer.avatar.url }}">
+            </div>
+        {% else %}
             <div class="img-container">
                 <svg viewbox="0,0,150,150">
                     <rect x=25 y=120 width=100 height=100 fill=black></rect>
@@ -15,7 +15,7 @@
                     <circle cx=75 cy=60 r=20 fill=black></circle>
                 </svg>
             </div>
-        {% comment %} {% endif %} {% endcomment %}
+        {% endif %}
         <p>Username: {{ user }}</p>
         <p>First name: {{ user.first_name }}</p>
         {% if user.last_name %}
