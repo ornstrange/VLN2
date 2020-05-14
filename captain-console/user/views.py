@@ -1,16 +1,14 @@
+import os
 from django.shortcuts import render, redirect
 from django.conf import settings
 from django.contrib.auth.hashers import make_password, check_password
-from django.contrib.auth import update_session_auth_hash
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth.forms import PasswordChangeForm
-from django.contrib.auth import login, authenticate
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, PasswordChangeForm
+from django.contrib.auth import login, authenticate, update_session_auth_hash
 from django.contrib import messages
 from user.forms import SignupForm, EditProfileForm
 from user.models import User, Customer, Search
 from . import forms
-import os
+
 
 def register(request):
     if request.method == "POST":
@@ -90,22 +88,19 @@ def searches(request):
 
 
 def change_password(request):
-    if request.method == 'GET':
-        form = PasswordChangeForm(request.user, request.POST)
+    user = request.user
+    if request.method == 'POST':
+        form = PasswordChangeForm(data=request.POST, user=request.user)
         if form.is_valid():
-            print("HELLO")
-            user = form.save()
-            update_session_auth_hash(request, user)  
+            form.save()
+            update_session_auth_hash(request, form.user)  
             messages.success(request, f'Your password was successfully updated!')
-            return redirect('profile.html')
+            return redirect('profile')
         else:
             messages.error(request, f'Please correct the error below.')
     else:
-        form = PasswordChangeForm(request.user)
-    
-    return render(request, 'user/forgotten.html', {
-        'form': form
+        form = PasswordChangeForm(user=request.user)
+        args = {'form': form}
+    return render(request, "user/changepassword.html", {
+        "form": forms.PasswordChangeForm(data=request.POST, user=request.user)
     })
-    context = {
-        'style': 'user.css'
-    }
