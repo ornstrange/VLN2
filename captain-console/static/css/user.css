@@ -1,19 +1,42 @@
-.view-profile > * {
-    margin-top: 1rem;
+.view-profile {
+    margin: 1rem auto 0 auto;
+    display: grid;
+    max-width: 36rem;
+    grid-template:
+        "pic info" 1fr
+        "edit edit" 2rem
+        / 18rem auto;
+    grid-gap: 1rem;
+    align-items: center;
+    justify-items: center;
 }
 
 .view-profile .img-container {
-    align-self: center;
     width: 18rem;
-    max-height: 18rem;
     overflow: hidden;
-    border-radius: 50%;
-    border: 1px solid black;
-    margin: 1rem 0;
+    grid-area: pic;
 }
 
 .view-profile .img-container img {
     width: 100%;
+    height: inherit;
+}
+
+.view-profile .profile-info {
+    grid-area: info;
+    justify-self: start;
+}
+
+.view-profile .edit-btns {
+    margin: 0;
+    grid-area: span 1 / span 2;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.view-profile .edit-btns > * {
+    width: calc(50% - .5rem);
 }
 
 /* Search history */
