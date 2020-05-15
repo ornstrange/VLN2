@@ -6,7 +6,7 @@ urlpatterns = [
     path('employees', views.employees, name="employees"),
     path('contact', views.contacts, name="contact"),
     path('terms', views.terms, name="terms"),
-    path('social_responsibility', views.social, name="social"),
-    path('shipping&returns', views.shipping, name="shipping")
+    path('social-responsibility', views.social, name="social"),
+    path('shipping-and-returns', views.shipping, name="shipping")
 ]
 

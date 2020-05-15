@@ -39,6 +39,11 @@
     width: calc(50% - .5rem);
 }
 
+/* Login page */
+.login-form {
+    
+}
+
 /* Search history */
 .searches {
     max-width: 32rem;

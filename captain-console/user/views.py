@@ -5,10 +5,9 @@ from django.contrib.auth.hashers import make_password, check_password
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, PasswordChangeForm
 from django.contrib.auth import login, authenticate, update_session_auth_hash
 from django.contrib import messages
-import os
 from user.forms import SignupForm, EditProfileForm
 from user.models import User, Customer, Search
-
+import os
 
 def register(request):
     if request.method == "POST":
@@ -37,7 +36,8 @@ def login_view(request):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            return redirect('profile')
+            goto = request.GET.get('next') or 'profile'
+            return redirect(goto)
         else:
             messages.error(request, 'Login failed!')
             messages.error(request, form.errors)

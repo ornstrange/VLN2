@@ -1,20 +1,17 @@
 {% extends 'base.html' %}
 {% block content %}
     <h3>Login</h3>
-    <form class="basic-form" action="#" method="POST">
+    <form class="login-form basic-form" action="#" method="POST">
         {% csrf_token %}
-        <ul class="basic-form">
-            {{ form.as_ul }}
-            <li>
-                <button class="btn" type="submit">Login</button>
-            </li>
-        </ul>
-        <p class="register-link">
-            Don't have an account yet?
+        {{ form.as_ul }}
+        <li>
+            <button class="btn" type="submit">Login</button>
+        </li>
+        <li>
             <a class="btn" href="{% url 'register' %}">
-                Sign up now!
+                Create new account
             </a>
-        </p>
+        </li>
         
     </form>
 {% endblock %}

@@ -56,6 +56,7 @@ class Payment_info_form(forms.ModelForm):
                           validators=[valid_ccv])
     expiration = forms.DateField(required=True,
                                  label='Expiration date',
+                                 help_text='mm/yy or mm/yyyy',
                                  input_formats=['%m/%y', '%m/%Y'])
 
     class Meta:
