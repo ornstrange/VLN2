@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib import messages
 from products.models import Product
 from random import sample, seed
 from datetime import date
@@ -16,4 +17,12 @@ def index(request):
         'style': 'products.css'
     }
     return render(request, 'index.html', context=context)
+
+def handler404(request, *args, **argv):
+    messages.error(request, 'The page you were looking does not exist.')
+    return redirect('home')
+
+def handler500(request, *args, **argv):
+    messages.error(request, "Something bad happened, we are very sorry.")
+    return redirect('home')
 
