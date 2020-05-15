@@ -8,7 +8,7 @@ nav {
 
 .nav-container {
     margin: 0 auto;
-    width: 100vw;
+    width: 100%;
     max-width: 112em;
     height: 100%;
     display: flex;
@@ -112,5 +112,102 @@ nav {
     margin-left: 1rem;
     border: 1px solid black;
     flex-shrink: 0;
+}
+
+/* mobile navbar */
+.nav-container-mobile {
+    display: none;
+    height: 100%;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.nav-container-mobile .collapse-btn {
+    height: 3rem;
+    width: 20%;
+    text-align: center;
+    border-right: 1px solid #999999;
+}
+
+.nav-container-mobile .collapse-btn:hover {
+    background: #f2f2f2;
+    cursor: pointer;
+}
+
+.nav-container-mobile .search {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+}
+
+.nav-container-mobile .search .search-bar {
+    border: 1px solid #999999;
+    padding: 0 .25em;
+}
+
+.nav-container-mobile .search button {
+    margin-left: 1em;
+}
+
+.nav-container-mobile .search button img {
+    height: 1em;
+    width: 1em;
+}
+
+.nav-container-mobile .collapse {
+    border-top: 1px solid #999999;
+    display: block;
+    width: 100%;
+    height: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.nav-container-mobile .collapse .nav-link {
+    height: 3rem;
+    line-height: 3rem;
+    width: 100%;
+    text-align: left;
+    padding-left: 1rem;
+}
+
+.nav-container-mobile .collapse .nav-link-name {
+    height: 3rem;
+    line-height: 3rem;
+    border-top: 1px solid #cdcdcd;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-container-mobile .collapse .nav-link-name:hover {
+    background: none;
+}
+.nav-container-mobile .collapse .nav-link-name:first-child {
+    border: none;
+}
+
+.nav-container-mobile .collapse .nav-link-name .avatar {
+    max-height: 2rem;
+    margin-left: 1rem;
+    border: 1px solid white;
+}
+
+.nav-container-mobile .hide {
+    display: none;
+    height: 0;
+}
+
+@media (max-width: 944px) {
+/* small-screen */
+    .nav-container {
+        display: none;
+    }
+
+    .nav-container-mobile {
+        display:  flex;
+    }
 }
 

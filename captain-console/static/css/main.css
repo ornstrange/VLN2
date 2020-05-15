@@ -11,8 +11,8 @@
 
 a, button, input, select, option {
 	/* font-family: 'Hind Siliguri', sans-serif; */
+    background: none;
     border: none;
-    background: white;
     text-decoration: none;
     color: black;
     cursor: pointer;
@@ -129,24 +129,32 @@ body {
 }
 
 /* Breakpoints */
-@media (max-width: 1800px) {
-/* large-screens */
-  
-}
-
-@media (max-width: 1216px) {
-/* normal-screen */
-      
-}
-
 @media (max-width: 944px) {
 /* small-screen */
     html {
         font-size: 14px !important;
     }
+
+    body {
+        grid-template:
+            "navbar" auto
+            "main" auto
+            "footer" 10rem
+            / 1fr;
+    }
+
+    h1 {
+        font-size: 3rem;
+        letter-spacing: .2rem;
+    } h3 {
+        font-size: 1.5rem;
+    }
 }
 
 @media (max-width: 600px) {
 /* small-phone-screen */
+    html {
+        font-size: 13px !important;
+    }
 
 }

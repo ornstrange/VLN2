@@ -8,7 +8,7 @@
         {% if item == 'search' %}
             <form class="{% active item title %}" id="search-form" action="{% url item %}">
                 <input class="search-bar" id="search-field" type="text" name="search" value="Search...">
-                <button id="search-btn" type="submit">
+                <button type="submit">
                     <img src="{% static 'img/search.svg' %}" alt="Search">
                 </button>
             </form>
@@ -47,6 +47,53 @@
         {% endfor %}
         </div>
     {% endfor %}
+    </div>
+    <div class="nav-container-mobile">
+        <button class="collapse-btn" id="collapse-btn" type="button">
+            &#9776;
+        </button>
+        <form class="search" id="search-form-responsive" action="{% url 'search' %}">
+            <input class="search-bar" id="search-field-responsive"
+                type="text" name="search" value="Search...">
+            <button type="submit">
+                <img src="{% static 'img/search.svg' %}" alt="Search">
+            </button>
+        </form>
+        <div id="nav-collapse" class="collapse hide">
+            <h5 class="nav-link nav-link-name">
+                Products
+            </h5>
+            {% for name in navbar_links.0 %}
+            <a class="nav-link" href="{{ name }}">{{ name|capfirst }}</a>
+            {% endfor %}
+            {% for item in navbar_links.2 %}
+            {% if item|typeof == 'string' %}
+            <a class="nav-link" href="{{ name }}">{{ name|capfirst }}</a>
+            {% elif item|typeof == 'tuple' %}
+            {% if item.0|typeof == 'SimpleLazyObject' %}
+            <h5 class="nav-link nav-link-name">
+                {{ item.0 }}
+                {% if item.0.customer.avatar %}
+                <img class="avatar" src="{{ item.0.customer.avatar.url }}">
+                {% endif %}
+            </h5>
+            {% else %}
+            <h5 class="nav-link nav-link-name">
+                {{ item.0}}
+            </h5>
+            {% endif %}
+            {% for i in item.1 %}
+            {% if i|typeof == 'dict' %}
+            {% for k, v in i.items %}
+            <a class="nav-link" href="{{ v }}">{{ k|capfirst }}</a>
+            {% endfor %}
+            {% else %}
+            <a class="nav-link" href="{{ i }}">{{ i|capfirst }}</a>
+            {% endif %}
+            {% endfor %}
+            {% endif %}
+            {% endfor %}
+        </div>
     </div>
 </nav>
 

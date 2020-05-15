@@ -12,6 +12,10 @@ main {
     align-items: center;
 }
 
+.products > * {
+    background: white;
+}
+
 .no-prods {
     width: 26rem;
     grid-template-columns: 1fr;
@@ -31,6 +35,10 @@ main {
 
 .filters > * {
     margin-bottom: 1rem;
+}
+
+.filters a, .filters select {
+    background: white;
 }
 
 .filters .filter-title {

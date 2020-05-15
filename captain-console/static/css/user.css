@@ -86,3 +86,30 @@
     padding: .25rem 0;
     text-align: left;
 }
+
+@media (max-width: 600px) {
+/* small-phone-screen */
+    .view-profile {
+        width: 20rem;
+        grid-template:
+            "pic" 1fr
+            "info" 1fr
+            "edit" auto
+            / auto;
+        grid-gap: 1rem;
+    }
+
+    .view-profile .edit-btns {
+        grid-area: span 1 / span 1;
+        flex-wrap: wrap;
+    }
+
+    .view-profile .edit-btns > * {
+        width: 100%;
+    }
+
+    .view-profile .edit-btns > *:last-child {
+        margin-top: 1rem;
+    }
+}
+

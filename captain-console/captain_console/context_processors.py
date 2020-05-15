@@ -14,7 +14,7 @@ def navigation_links(request):
             sub_menu = ({'View profile': 'profile'}, 'logout')
         cart = 'cart'
         if customer.active_cart:
-            cart = {f'Cart ({len(customer.active_cart.all_items)})': 'cart'}
+            cart = {f'Cart ( {len(customer.active_cart.all_items)} )': 'cart'}
         right += [(request.user, sub_menu), cart]
     else:
         right += ['login']

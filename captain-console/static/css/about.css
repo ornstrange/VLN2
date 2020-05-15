@@ -1,12 +1,16 @@
 .info_text{
-    width: 60vw;
+    width: 100%;
+    max-width: 48rem;
     margin:auto;
     line-height: 2rem;
+    padding: 0 1rem;
 }
 
 .infolist{
-    width: 50vw;
+    width: 100%;
+    max-width: 48rem;
     margin:auto;
+    padding: 0 1rem;
 }
 
 .info_text > p{

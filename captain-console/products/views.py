@@ -100,6 +100,10 @@ def product(request, id):
         return redirect('login')
     prod = Product.objects.get(pk=id)
     prev = request.META.get('HTTP_REFERER')
+    if prod.get_absolute_url() in prev:
+        prev = '/products/'
+        prev += 'games' if prod.category == "Game" else 'consoles'
+    print(prev)
     context = {
         'prod': prod,
         'prev': prev,

@@ -19,6 +19,7 @@
                 {% endif %}
                 method="POST">
                 {% csrf_token %}
+                <input type="hidden" name="prev" value="{{ prev }}">
                 <button type="submit" name="id" value="{{ prod.id }}">
                     Add to cart
                 </button>

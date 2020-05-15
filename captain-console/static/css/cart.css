@@ -115,3 +115,18 @@
     background: #f1230042;
 }
 
+@media (max-width: 680px) {
+/* small-phone-screen */
+    .cart-item {
+        height: auto;
+        padding: .25rem;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(2, 6rem);
+        grid-gap: .5rem;
+        justify-items: center;
+        align-items: center;
+        border: 1px solid #adadad;
+        border-bottom: none;
+    }
+}
